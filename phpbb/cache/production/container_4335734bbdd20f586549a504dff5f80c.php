@@ -30,6 +30,15 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         ];
         $this->methodMap = [
             'acl.permissions' => 'getAcl_PermissionsService',
+            'acme.demo.command.sample' => 'getAcme_Demo_Command_SampleService',
+            'acme.demo.controller.acp' => 'getAcme_Demo_Controller_AcpService',
+            'acme.demo.controller.main' => 'getAcme_Demo_Controller_MainService',
+            'acme.demo.controller.mcp' => 'getAcme_Demo_Controller_McpService',
+            'acme.demo.controller.ucp' => 'getAcme_Demo_Controller_UcpService',
+            'acme.demo.cron.task.sample' => 'getAcme_Demo_Cron_Task_SampleService',
+            'acme.demo.listener' => 'getAcme_Demo_ListenerService',
+            'acme.demo.notification.type.sample' => 'getAcme_Demo_Notification_Type_SampleService',
+            'acme.demo.service' => 'getAcme_Demo_ServiceService',
             'attachment.delete' => 'getAttachment_DeleteService',
             'attachment.manager' => 'getAttachment_ManagerService',
             'attachment.resync' => 'getAttachment_ResyncService',
@@ -234,6 +243,29 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'phpbb.report.handlers.report_handler_pm' => 'getPhpbb_Report_Handlers_ReportHandlerPmService',
             'phpbb.report.handlers.report_handler_post' => 'getPhpbb_Report_Handlers_ReportHandlerPostService',
             'phpbb.report.report_reason_list_provider' => 'getPhpbb_Report_ReportReasonListProviderService',
+            'phpbb.skeleton.collection' => 'getPhpbb_Skeleton_CollectionService',
+            'phpbb.skeleton.command.create' => 'getPhpbb_Skeleton_Command_CreateService',
+            'phpbb.skeleton.controller' => 'getPhpbb_Skeleton_ControllerService',
+            'phpbb.skeleton.ext.skeleton.acp' => 'getPhpbb_Skeleton_Ext_Skeleton_AcpService',
+            'phpbb.skeleton.ext.skeleton.build' => 'getPhpbb_Skeleton_Ext_Skeleton_BuildService',
+            'phpbb.skeleton.ext.skeleton.console' => 'getPhpbb_Skeleton_Ext_Skeleton_ConsoleService',
+            'phpbb.skeleton.ext.skeleton.controller' => 'getPhpbb_Skeleton_Ext_Skeleton_ControllerService',
+            'phpbb.skeleton.ext.skeleton.cron' => 'getPhpbb_Skeleton_Ext_Skeleton_CronService',
+            'phpbb.skeleton.ext.skeleton.ext' => 'getPhpbb_Skeleton_Ext_Skeleton_ExtService',
+            'phpbb.skeleton.ext.skeleton.githubactions' => 'getPhpbb_Skeleton_Ext_Skeleton_GithubactionsService',
+            'phpbb.skeleton.ext.skeleton.htmllistener' => 'getPhpbb_Skeleton_Ext_Skeleton_HtmllistenerService',
+            'phpbb.skeleton.ext.skeleton.mcp' => 'getPhpbb_Skeleton_Ext_Skeleton_McpService',
+            'phpbb.skeleton.ext.skeleton.migration' => 'getPhpbb_Skeleton_Ext_Skeleton_MigrationService',
+            'phpbb.skeleton.ext.skeleton.notification' => 'getPhpbb_Skeleton_Ext_Skeleton_NotificationService',
+            'phpbb.skeleton.ext.skeleton.permissions' => 'getPhpbb_Skeleton_Ext_Skeleton_PermissionsService',
+            'phpbb.skeleton.ext.skeleton.phplistener' => 'getPhpbb_Skeleton_Ext_Skeleton_PhplistenerService',
+            'phpbb.skeleton.ext.skeleton.service' => 'getPhpbb_Skeleton_Ext_Skeleton_ServiceService',
+            'phpbb.skeleton.ext.skeleton.tests' => 'getPhpbb_Skeleton_Ext_Skeleton_TestsService',
+            'phpbb.skeleton.ext.skeleton.travis' => 'getPhpbb_Skeleton_Ext_Skeleton_TravisService',
+            'phpbb.skeleton.ext.skeleton.ucp' => 'getPhpbb_Skeleton_Ext_Skeleton_UcpService',
+            'phpbb.skeleton.helper.packager' => 'getPhpbb_Skeleton_Helper_PackagerService',
+            'phpbb.skeleton.helper.validator' => 'getPhpbb_Skeleton_Helper_ValidatorService',
+            'phpbb.skeleton.listener' => 'getPhpbb_Skeleton_ListenerService',
             'phpbb.ucp.controller.reset_password' => 'getPhpbb_Ucp_Controller_ResetPasswordService',
             'phpbb.viglink.acp_listener' => 'getPhpbb_Viglink_AcpListenerService',
             'phpbb.viglink.cron.task.viglink' => 'getPhpbb_Viglink_Cron_Task_ViglinkService',
@@ -309,6 +341,15 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'text_formatter.renderer' => true,
             'text_formatter.utils' => true,
             'acl.permissions' => true,
+            'acme.demo.command.sample' => true,
+            'acme.demo.controller.acp' => true,
+            'acme.demo.controller.main' => true,
+            'acme.demo.controller.mcp' => true,
+            'acme.demo.controller.ucp' => true,
+            'acme.demo.cron.task.sample' => true,
+            'acme.demo.listener' => true,
+            'acme.demo.notification.type.sample' => true,
+            'acme.demo.service' => true,
             'attachment.delete' => true,
             'attachment.manager' => true,
             'attachment.resync' => true,
@@ -515,6 +556,29 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'phpbb.report.handlers.report_handler_pm' => true,
             'phpbb.report.handlers.report_handler_post' => true,
             'phpbb.report.report_reason_list_provider' => true,
+            'phpbb.skeleton.collection' => true,
+            'phpbb.skeleton.command.create' => true,
+            'phpbb.skeleton.controller' => true,
+            'phpbb.skeleton.ext.skeleton.acp' => true,
+            'phpbb.skeleton.ext.skeleton.build' => true,
+            'phpbb.skeleton.ext.skeleton.console' => true,
+            'phpbb.skeleton.ext.skeleton.controller' => true,
+            'phpbb.skeleton.ext.skeleton.cron' => true,
+            'phpbb.skeleton.ext.skeleton.ext' => true,
+            'phpbb.skeleton.ext.skeleton.githubactions' => true,
+            'phpbb.skeleton.ext.skeleton.htmllistener' => true,
+            'phpbb.skeleton.ext.skeleton.mcp' => true,
+            'phpbb.skeleton.ext.skeleton.migration' => true,
+            'phpbb.skeleton.ext.skeleton.notification' => true,
+            'phpbb.skeleton.ext.skeleton.permissions' => true,
+            'phpbb.skeleton.ext.skeleton.phplistener' => true,
+            'phpbb.skeleton.ext.skeleton.service' => true,
+            'phpbb.skeleton.ext.skeleton.tests' => true,
+            'phpbb.skeleton.ext.skeleton.travis' => true,
+            'phpbb.skeleton.ext.skeleton.ucp' => true,
+            'phpbb.skeleton.helper.packager' => true,
+            'phpbb.skeleton.helper.validator' => true,
+            'phpbb.skeleton.listener' => true,
             'phpbb.ucp.controller.reset_password' => true,
             'phpbb.viglink.acp_listener' => true,
             'phpbb.viglink.cron.task.viglink' => true,
@@ -598,6 +662,15 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'Psr\\Container\\ContainerInterface' => true,
             'Symfony\\Component\\DependencyInjection\\ContainerInterface' => true,
             'acl.permissions' => true,
+            'acme.demo.command.sample' => true,
+            'acme.demo.controller.acp' => true,
+            'acme.demo.controller.main' => true,
+            'acme.demo.controller.mcp' => true,
+            'acme.demo.controller.ucp' => true,
+            'acme.demo.cron.task.sample' => true,
+            'acme.demo.listener' => true,
+            'acme.demo.notification.type.sample' => true,
+            'acme.demo.service' => true,
             'attachment.delete' => true,
             'attachment.manager' => true,
             'attachment.resync' => true,
@@ -806,6 +879,29 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'phpbb.report.handlers.report_handler_pm' => true,
             'phpbb.report.handlers.report_handler_post' => true,
             'phpbb.report.report_reason_list_provider' => true,
+            'phpbb.skeleton.collection' => true,
+            'phpbb.skeleton.command.create' => true,
+            'phpbb.skeleton.controller' => true,
+            'phpbb.skeleton.ext.skeleton.acp' => true,
+            'phpbb.skeleton.ext.skeleton.build' => true,
+            'phpbb.skeleton.ext.skeleton.console' => true,
+            'phpbb.skeleton.ext.skeleton.controller' => true,
+            'phpbb.skeleton.ext.skeleton.cron' => true,
+            'phpbb.skeleton.ext.skeleton.ext' => true,
+            'phpbb.skeleton.ext.skeleton.githubactions' => true,
+            'phpbb.skeleton.ext.skeleton.htmllistener' => true,
+            'phpbb.skeleton.ext.skeleton.mcp' => true,
+            'phpbb.skeleton.ext.skeleton.migration' => true,
+            'phpbb.skeleton.ext.skeleton.notification' => true,
+            'phpbb.skeleton.ext.skeleton.permissions' => true,
+            'phpbb.skeleton.ext.skeleton.phplistener' => true,
+            'phpbb.skeleton.ext.skeleton.service' => true,
+            'phpbb.skeleton.ext.skeleton.tests' => true,
+            'phpbb.skeleton.ext.skeleton.travis' => true,
+            'phpbb.skeleton.ext.skeleton.ucp' => true,
+            'phpbb.skeleton.helper.packager' => true,
+            'phpbb.skeleton.helper.validator' => true,
+            'phpbb.skeleton.listener' => true,
             'phpbb.ucp.controller.reset_password' => true,
             'phpbb.viglink.acp_listener' => true,
             'phpbb.viglink.cron.task.viglink' => true,
@@ -911,6 +1007,104 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     protected function getAcl_PermissionsService()
     {
         return $this->services['acl.permissions'] = new \phpbb\permissions(${($_ = isset($this->services['dispatcher']) ? $this->services['dispatcher'] : $this->getDispatcherService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'acme.demo.command.sample' shared service.
+     *
+     * @return \acme\demo\console\command\sample
+     */
+    protected function getAcme_Demo_Command_SampleService()
+    {
+        return $this->services['acme.demo.command.sample'] = new \acme\demo\console\command\sample(${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'acme.demo.controller.acp' shared service.
+     *
+     * @return \acme\demo\controller\acp_controller
+     */
+    protected function getAcme_Demo_Controller_AcpService()
+    {
+        return $this->services['acme.demo.controller.acp'] = new \acme\demo\controller\acp_controller(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['log']) ? $this->services['log'] : $this->getLogService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'acme.demo.controller.main' shared service.
+     *
+     * @return \acme\demo\controller\main_controller
+     */
+    protected function getAcme_Demo_Controller_MainService()
+    {
+        return $this->services['acme.demo.controller.main'] = new \acme\demo\controller\main_controller(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'acme.demo.controller.mcp' shared service.
+     *
+     * @return \acme\demo\controller\mcp_controller
+     */
+    protected function getAcme_Demo_Controller_McpService()
+    {
+        return $this->services['acme.demo.controller.mcp'] = new \acme\demo\controller\mcp_controller(${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'acme.demo.controller.ucp' shared service.
+     *
+     * @return \acme\demo\controller\ucp_controller
+     */
+    protected function getAcme_Demo_Controller_UcpService()
+    {
+        return $this->services['acme.demo.controller.ucp'] = new \acme\demo\controller\ucp_controller(${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'acme.demo.cron.task.sample' shared service.
+     *
+     * @return \acme\demo\cron\task\sample
+     */
+    protected function getAcme_Demo_Cron_Task_SampleService()
+    {
+        $this->services['acme.demo.cron.task.sample'] = $instance = new \acme\demo\cron\task\sample(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'});
+
+        $instance->set_name('cron.task.acme.demo.sample');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'acme.demo.listener' shared service.
+     *
+     * @return \acme\demo\event\main_listener
+     */
+    protected function getAcme_Demo_ListenerService()
+    {
+        return $this->services['acme.demo.listener'] = new \acme\demo\event\main_listener(${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, 'php');
+    }
+
+    /**
+     * Gets the private 'acme.demo.notification.type.sample' service.
+     *
+     * @return \acme\demo\notification\type\sample
+     */
+    protected function getAcme_Demo_Notification_Type_SampleService()
+    {
+        $instance = new \acme\demo\notification\type\sample(${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['auth']) ? $this->services['auth'] : ($this->services['auth'] = new \phpbb\auth\auth())) && false ?: '_'}, './', 'php', 'phpbb_blogdbuser_notifications');
+
+        $instance->set_controller_helper(${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'});
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'acme.demo.service' shared service.
+     *
+     * @return \acme\demo\service
+     */
+    protected function getAcme_Demo_ServiceService()
+    {
+        return $this->services['acme.demo.service'] = new \acme\demo\service(${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, 'phpbb_blogdbacme_demo_table');
     }
 
     /**
@@ -1586,6 +1780,8 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('console.command.user.add');
         $instance->add('console.command.user.delete');
         $instance->add('console.command.user.reclean');
+        $instance->add('acme.demo.command.sample');
+        $instance->add('phpbb.skeleton.command.create');
 
         return $instance;
     }
@@ -2023,6 +2219,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('cron.task.text_reparser.post_text');
         $instance->add('cron.task.text_reparser.user_signature');
         $instance->add('cron.task.core.update_hashes');
+        $instance->add('acme.demo.cron.task.sample');
         $instance->add('phpbb.viglink.cron.task.viglink');
 
         return $instance;
@@ -2137,6 +2334,27 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     {
         $this->services['dispatcher'] = $instance = new \phpbb\event\dispatcher($this);
 
+        $instance->addListener('core.user_setup', [0 => function () {
+            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
+        }, 1 => 'load_language_on_setup'], 0);
+        $instance->addListener('core.page_header', [0 => function () {
+            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
+        }, 1 => 'add_page_header_link'], 0);
+        $instance->addListener('core.viewonline_overwrite_location', [0 => function () {
+            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
+        }, 1 => 'viewonline_page'], 0);
+        $instance->addListener('core.display_forums_modify_template_vars', [0 => function () {
+            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
+        }, 1 => 'display_forums_modify_template_vars'], 0);
+        $instance->addListener('core.permissions', [0 => function () {
+            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
+        }, 1 => 'add_permissions'], 0);
+        $instance->addListener('core.user_setup', [0 => function () {
+            return ${($_ = isset($this->services['phpbb.skeleton.listener']) ? $this->services['phpbb.skeleton.listener'] : $this->getPhpbb_Skeleton_ListenerService()) && false ?: '_'};
+        }, 1 => 'load_language_on_setup'], 0);
+        $instance->addListener('core.page_header', [0 => function () {
+            return ${($_ = isset($this->services['phpbb.skeleton.listener']) ? $this->services['phpbb.skeleton.listener'] : $this->getPhpbb_Skeleton_ListenerService()) && false ?: '_'};
+        }, 1 => 'add_page_header_link'], 0);
         $instance->addListener('core.viewtopic_post_row_after', [0 => function () {
             return ${($_ = isset($this->services['phpbb.viglink.listener']) ? $this->services['phpbb.viglink.listener'] : $this->getPhpbb_Viglink_ListenerService()) && false ?: '_'};
         }, 1 => 'display_viglink'], 0);
@@ -3029,6 +3247,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('notification.type.topic');
         $instance->add('notification.type.topic_in_queue');
         $instance->add('notification.type.forum');
+        $instance->add('acme.demo.notification.type.sample');
 
         return $instance;
     }
@@ -3368,6 +3587,256 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     protected function getPhpbb_Report_ReportReasonListProviderService()
     {
         return $this->services['phpbb.report.report_reason_list_provider'] = new \phpbb\report\report_reason_list_provider(${($_ = isset($this->services['dbal.conn.driver']) ? $this->services['dbal.conn.driver'] : $this->get('dbal.conn.driver', 1)) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.collection' shared service.
+     *
+     * @return \phpbb\di\service_collection
+     */
+    protected function getPhpbb_Skeleton_CollectionService()
+    {
+        $this->services['phpbb.skeleton.collection'] = $instance = new \phpbb\di\service_collection($this);
+
+        $instance->add('phpbb.skeleton.ext.skeleton.phplistener');
+        $instance->add('phpbb.skeleton.ext.skeleton.htmllistener');
+        $instance->add('phpbb.skeleton.ext.skeleton.acp');
+        $instance->add('phpbb.skeleton.ext.skeleton.mcp');
+        $instance->add('phpbb.skeleton.ext.skeleton.ucp');
+        $instance->add('phpbb.skeleton.ext.skeleton.migration');
+        $instance->add('phpbb.skeleton.ext.skeleton.service');
+        $instance->add('phpbb.skeleton.ext.skeleton.controller');
+        $instance->add('phpbb.skeleton.ext.skeleton.ext');
+        $instance->add('phpbb.skeleton.ext.skeleton.console');
+        $instance->add('phpbb.skeleton.ext.skeleton.cron');
+        $instance->add('phpbb.skeleton.ext.skeleton.notification');
+        $instance->add('phpbb.skeleton.ext.skeleton.permissions');
+        $instance->add('phpbb.skeleton.ext.skeleton.tests');
+        $instance->add('phpbb.skeleton.ext.skeleton.githubactions');
+        $instance->add('phpbb.skeleton.ext.skeleton.travis');
+        $instance->add('phpbb.skeleton.ext.skeleton.build');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.command.create' shared service.
+     *
+     * @return \phpbb\skeleton\console\create
+     */
+    protected function getPhpbb_Skeleton_Command_CreateService()
+    {
+        return $this->services['phpbb.skeleton.command.create'] = new \phpbb\skeleton\console\create(${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['phpbb.skeleton.helper.packager']) ? $this->services['phpbb.skeleton.helper.packager'] : $this->getPhpbb_Skeleton_Helper_PackagerService()) && false ?: '_'}, ${($_ = isset($this->services['phpbb.skeleton.helper.validator']) ? $this->services['phpbb.skeleton.helper.validator'] : $this->getPhpbb_Skeleton_Helper_ValidatorService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.controller' shared service.
+     *
+     * @return \phpbb\skeleton\controller\main
+     */
+    protected function getPhpbb_Skeleton_ControllerService()
+    {
+        return $this->services['phpbb.skeleton.controller'] = new \phpbb\skeleton\controller\main(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['phpbb.skeleton.helper.packager']) ? $this->services['phpbb.skeleton.helper.packager'] : $this->getPhpbb_Skeleton_Helper_PackagerService()) && false ?: '_'}, ${($_ = isset($this->services['phpbb.skeleton.helper.validator']) ? $this->services['phpbb.skeleton.helper.validator'] : $this->getPhpbb_Skeleton_Helper_ValidatorService()) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.acp' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_AcpService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.acp'] = new \phpbb\skeleton\skeleton('acp', false, [], [0 => 'acp/main_info.php', 1 => 'acp/main_module.php', 2 => 'adm/style/acp_demo_body.html', 3 => 'config/services.yml', 4 => 'controller/acp_controller.php', 5 => 'language/en/common.php', 6 => 'language/en/info_acp_demo.php', 7 => 'migrations/install_acp_module.php'], 'CONTROL_PANELS');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.build' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_BuildService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.build'] = new \phpbb\skeleton\skeleton('build', false, [], [0 => 'build.xml'], 'TEST_DEPLOY');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.console' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_ConsoleService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.console'] = new \phpbb\skeleton\skeleton('console', false, [], [0 => 'config/services.yml', 1 => 'console/command/sample.php', 2 => 'language/en/cli.php'], 'OTHER');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.controller' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_ControllerService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.controller'] = new \phpbb\skeleton\skeleton('controller', false, [], [0 => 'config/routing.yml', 1 => 'config/services.yml', 2 => 'event/main_listener.php', 3 => 'language/en/common.php', 4 => 'controller/main_controller.php', 5 => 'styles/prosilver/template/demo_body.html', 6 => 'styles/prosilver/template/event/overall_header_navigation_prepend.html'], 'BACK_END');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.cron' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_CronService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.cron'] = new \phpbb\skeleton\skeleton('cron', false, [], [0 => 'config/services.yml', 1 => 'cron/task/sample.php', 2 => 'migrations/install_cron.php'], 'OTHER');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.ext' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_ExtService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.ext'] = new \phpbb\skeleton\skeleton('ext', false, [], [0 => 'ext.php'], 'BACK_END');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.githubactions' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_GithubactionsService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.githubactions'] = new \phpbb\skeleton\skeleton('githubactions', false, [0 => 'tests'], [0 => '.github/workflows/tests.yml'], 'TEST_DEPLOY');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.htmllistener' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_HtmllistenerService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.htmllistener'] = new \phpbb\skeleton\skeleton('htmllistener', false, [], [0 => 'styles/prosilver/template/event/overall_header_navigation_prepend.html'], 'FRONT_END');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.mcp' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_McpService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.mcp'] = new \phpbb\skeleton\skeleton('mcp', false, [], [0 => 'mcp/main_info.php', 1 => 'mcp/main_module.php', 2 => 'config/services.yml', 3 => 'controller/mcp_controller.php', 4 => 'styles/prosilver/template/mcp_demo_body.html', 5 => 'language/en/info_mcp_demo.php', 6 => 'migrations/install_mcp_module.php'], 'CONTROL_PANELS');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.migration' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_MigrationService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.migration'] = new \phpbb\skeleton\skeleton('migration', false, [], [0 => 'migrations/install_sample_schema.php', 1 => 'migrations/install_sample_data.php'], 'DATABASE');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.notification' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_NotificationService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.notification'] = new \phpbb\skeleton\skeleton('notification', false, [], [0 => 'ext.php', 1 => 'config/services.yml', 2 => 'notification/type/sample.php', 3 => 'language/en/common.php', 4 => 'language/en/info_ucp_demo.php'], 'OTHER');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.permissions' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_PermissionsService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.permissions'] = new \phpbb\skeleton\skeleton('permissions', false, [], [0 => 'migrations/install_sample_data.php', 1 => 'event/main_listener.php', 2 => 'language/en/permissions_demo.php', 3 => 'config/services.yml'], 'OTHER');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.phplistener' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_PhplistenerService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.phplistener'] = new \phpbb\skeleton\skeleton('phplistener', false, [], [0 => 'config/services.yml', 1 => 'event/main_listener.php', 2 => 'language/en/common.php'], 'BACK_END');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.service' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_ServiceService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.service'] = new \phpbb\skeleton\skeleton('service', false, [], [0 => 'service.php', 1 => 'config/services.yml', 2 => 'config/parameters.yml'], 'BACK_END');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.tests' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_TestsService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.tests'] = new \phpbb\skeleton\skeleton('tests', false, [], [0 => 'tests/controller/main_test.php', 1 => 'tests/dbal/fixtures/config.xml', 2 => 'tests/dbal/simple_test.php', 3 => 'tests/functional/view_test.php', 4 => 'phpunit.xml.dist'], 'TEST_DEPLOY');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.travis' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_TravisService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.travis'] = new \phpbb\skeleton\skeleton('travis', false, [0 => 'tests'], [0 => 'travis/prepare-phpbb.sh', 1 => '.travis.yml'], 'TEST_DEPLOY');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.ext.skeleton.ucp' shared service.
+     *
+     * @return \phpbb\skeleton\skeleton
+     */
+    protected function getPhpbb_Skeleton_Ext_Skeleton_UcpService()
+    {
+        return $this->services['phpbb.skeleton.ext.skeleton.ucp'] = new \phpbb\skeleton\skeleton('ucp', false, [], [0 => 'ucp/main_info.php', 1 => 'ucp/main_module.php', 2 => 'config/services.yml', 3 => 'controller/ucp_controller.php', 4 => 'styles/prosilver/template/ucp_demo_body.html', 5 => 'language/en/info_ucp_demo.php', 6 => 'migrations/install_ucp_module.php', 7 => 'migrations/install_sample_schema.php'], 'CONTROL_PANELS');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.helper.packager' shared service.
+     *
+     * @return \phpbb\skeleton\helper\packager
+     */
+    protected function getPhpbb_Skeleton_Helper_PackagerService()
+    {
+        return $this->services['phpbb.skeleton.helper.packager'] = new \phpbb\skeleton\helper\packager($this, ${($_ = isset($this->services['phpbb.skeleton.collection']) ? $this->services['phpbb.skeleton.collection'] : $this->getPhpbb_Skeleton_CollectionService()) && false ?: '_'}, './');
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.helper.validator' shared service.
+     *
+     * @return \phpbb\skeleton\helper\validator
+     */
+    protected function getPhpbb_Skeleton_Helper_ValidatorService()
+    {
+        return $this->services['phpbb.skeleton.helper.validator'] = new \phpbb\skeleton\helper\validator(${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'phpbb.skeleton.listener' shared service.
+     *
+     * @return \phpbb\skeleton\event\main_listener
+     */
+    protected function getPhpbb_Skeleton_ListenerService()
+    {
+        return $this->services['phpbb.skeleton.listener'] = new \phpbb\skeleton\event\main_listener(${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'});
     }
 
     /**
@@ -4350,6 +4819,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'debug.show_errors' => false,
             'debug.error_handler' => false,
             'session.log_errors' => false,
+            'acme.demo.tables.demo_table' => 'phpbb_blogdbacme_demo_table',
             'tables' => [
                 'acl_groups' => 'phpbb_blogdbacl_groups',
                 'acl_options' => 'phpbb_blogdbacl_options',
@@ -4429,6 +4899,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
                 'warnings' => 'phpbb_blogdbwarnings',
                 'words' => 'phpbb_blogdbwords',
                 'zebra' => 'phpbb_blogdbzebra',
+                'demo_table' => 'phpbb_blogdbacme_demo_table',
             ],
             'core.adm_relative_path' => 'adm/',
             'core.table_prefix' => 'phpbb_blogdb',

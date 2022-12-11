@@ -33,19 +33,17 @@ function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      const data = await Axios.post(
-        `${baseUrl}/api/login`,
-        {
-          email: e.target[0].defaultValue,
-          password: e.target[1].defaultValue,
-        },
-        {
-          withCredentials: true,
-          credentials: 'include',
-        }
-      ).then((response) => {
-        setUsername(response.data.username);
-        setLoggedIn(true);
+      await Axios.post('http://localhost/blog/phpbb/ucp.php?mode=login', {
+        username: e.target[0].defaultValue,
+        password: e.target[1].defaultValue,
+      }).then((response) => {
+        // if (response.data.username == 'request failed') {
+        //   setLoggedIn(false);
+        // } else {
+        //   setUsername(response.data.username);
+        //   setLoggedIn(false);
+        // }
+        console.log(response.data);
       });
     } catch (err) {
       console.log(err);
@@ -69,12 +67,12 @@ function Login() {
             </div>
             <div className='form-label-group p-3'>
               <input
-                type='email'
+                type='text'
                 className='form-control'
                 name='email'
                 placeholder='Email'
                 autoComplete='off'
-                value={userLogin.email}
+                value={userLogin.username}
                 onChange={(e) => {
                   handleInputChange(e);
                 }}

@@ -131,6 +131,16 @@ class phpbb_url_matcher extends Symfony\Component\Routing\Matcher\UrlMatcher
             return array (  '_controller' => 'phpbb.ucp.controller.reset_password:request',  '_route' => 'phpbb_ucp_forgot_password_controller',);
         }
 
+        // acme_demo_controller
+        if (0 === strpos($pathinfo, '/demo') && preg_match('#^/demo/(?P<name>[^/]++)$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, ['_route' => 'acme_demo_controller']), array (  '_controller' => 'acme.demo.controller.main:handle',));
+        }
+
+        // phpbb_skeleton_controller
+        if ('/skeleton' === $pathinfo) {
+            return array (  '_controller' => 'phpbb.skeleton.controller:handle',  '_route' => 'phpbb_skeleton_controller',);
+        }
+
         if ('/' === $pathinfo && !$allow) {
             throw new Symfony\Component\Routing\Exception\NoConfigurationException();
         }

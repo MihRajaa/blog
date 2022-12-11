@@ -4,6 +4,8 @@ import DateFormater from '../helpers/dateFormater';
 import { Link } from 'react-router-dom';
 import baseUrl from '../helpers/baseUrl';
 
+import data from '../tweetter-result';
+
 /* lists all the blog articles in a clipped format */
 function BlogItems() {
   const [blogList, setBlogList] = useState([]);
@@ -12,17 +14,21 @@ function BlogItems() {
   /* GETs all the blog articles */
   const getBlogList = async () => {
     try {
-      setLoading(true);
-      const req = await Axios.get(`${baseUrl}/api/get`, {
-        withCredentials: true,
-      }).then((res) => {
-        setBlogList(res.data);
-        setLoading(false);
-      });
+      setLoading(false);
+      //   await Axios.get('../../tweetter-result.json').then((res) => {
+      //     setBlogList(res.data);
+      //     setLoading(false);
+      //   });
+      setBlogList(data);
     } catch (err) {
       console.log(err);
     }
   };
+
+  console.log(
+    'blogList',
+    blogList.map((blog) => blog)
+  );
 
   useEffect(() => {
     getBlogList();
@@ -37,19 +43,17 @@ function BlogItems() {
       ) : (
         <>
           <div className='inner-container'>
-            {blogList &&
-              blogList.map((blog) => {
-                return (
-                  <div className='blog-elems'>
-                    <div className='blog-title'>
-                      <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
+            <div className='blog-elems'>
+              <div className='blog-title'>
+                {blogList.map((blog) => {
+                  return (
+                    <div className='bg-white' key={blog.id}>
+                      {blog.user.name}
                     </div>
-                    <div className='blog-list-body'>
-                      {blog && blog.body.slice(0, 200) + '...'}
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </>
       )}

@@ -1,4 +1,4 @@
 <?php exit; ?>
-1701791066
-98
-a:2:{s:32:"fb8d6a9fce788c3bf9b5336bc52e31ae";a:0:{}s:32:"0d47a9bd48f85126d4a6de772998c56e";a:0:{}}
+1702291493
+883
+a:2:{s:32:"2eca13a983da086b42fc89e5228648ef";a:2:{i:0;a:4:{s:10:"named_path";s:43:"ext/acme/demo/language/en/info_acp_demo.php";s:8:"ext_name";s:9:"acme/demo";s:4:"path";s:26:"ext/acme/demo/language/en/";s:8:"filename";s:17:"info_acp_demo.php";}i:1;a:4:{s:10:"named_path";s:50:"ext/phpbb/viglink/language/en/info_acp_viglink.php";s:8:"ext_name";s:13:"phpbb/viglink";s:4:"path";s:30:"ext/phpbb/viglink/language/en/";s:8:"filename";s:20:"info_acp_viglink.php";}}s:32:"38c8aa6c2f43b4107871f4780b68b548";a:2:{i:0;a:4:{s:10:"named_path";s:46:"ext/acme/demo/language/en/permissions_demo.php";s:8:"ext_name";s:9:"acme/demo";s:4:"path";s:26:"ext/acme/demo/language/en/";s:8:"filename";s:20:"permissions_demo.php";}i:1;a:4:{s:10:"named_path";s:37:"language/en/acp/permissions_phpbb.php";s:8:"ext_name";s:1:"/";s:4:"path";s:16:"language/en/acp/";s:8:"filename";s:21:"permissions_phpbb.php";}}}
