@@ -1,5 +1,5 @@
 <?php exit; ?>
-1670758563
+1671127084
 SELECT ban_ip, ban_userid, ban_email, ban_exclude, ban_give_reason, ban_end FROM phpbb_blogdbbanlist WHERE ban_email = '' AND (ban_userid = 1 OR ban_ip <> '')
 6
 a:0:{}

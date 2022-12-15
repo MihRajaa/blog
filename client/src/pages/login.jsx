@@ -33,7 +33,7 @@ function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      await Axios.post('http://localhost/blog/phpbb/ucp.php?mode=login', {
+      await Axios.post('http://localhost/blog/api/index2.php', {
         username: e.target[0].defaultValue,
         password: e.target[1].defaultValue,
       }).then((response) => {

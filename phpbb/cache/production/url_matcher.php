@@ -131,9 +131,35 @@ class phpbb_url_matcher extends Symfony\Component\Routing\Matcher\UrlMatcher
             return array (  '_controller' => 'phpbb.ucp.controller.reset_password:request',  '_route' => 'phpbb_ucp_forgot_password_controller',);
         }
 
-        // acme_demo_controller
-        if (0 === strpos($pathinfo, '/demo') && preg_match('#^/demo/(?P<name>[^/]++)$#sD', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, ['_route' => 'acme_demo_controller']), array (  '_controller' => 'acme.demo.controller.main:handle',));
+        if (0 === strpos($pathinfo, '/restApiV1')) {
+            // eparsons_restapi_auth_login
+            if ('/restApiV1/login' === $pathinfo) {
+                return array (  '_controller' => 'eparsons.restapi.controller.auth:login',  '_route' => 'eparsons_restapi_auth_login',);
+            }
+
+            // eparsons_restapi_auth_logout
+            if ('/restApiV1/logout' === $pathinfo) {
+                return array (  '_controller' => 'eparsons.restapi.controller.auth:logout',  '_route' => 'eparsons_restapi_auth_logout',);
+            }
+
+            if (0 === strpos($pathinfo, '/restApiV1/users')) {
+                // eparsons_restapi_users_whoAmI
+                if ('/restApiV1/users/me' === $pathinfo) {
+                    return array (  '_controller' => 'eparsons.restapi.controller.users:whoAmI',  '_route' => 'eparsons_restapi_users_whoAmI',);
+                }
+
+                // eparsons_restapi_users_user
+                if (preg_match('#^/restApiV1/users(?:/(?P<userId>\\d+))?$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'eparsons_restapi_users_user']), array (  '_controller' => 'eparsons.restapi.controller.users:user',  'userId' => -1,));
+                }
+
+            }
+
+        }
+
+        // oneall_sociallogin_validate
+        if ('/oneall_sociallogin_validate' === $pathinfo) {
+            return array (  '_controller' => 'oneall.sociallogin.listener:handle',  '_route' => 'oneall_sociallogin_validate',);
         }
 
         // phpbb_skeleton_controller

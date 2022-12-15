@@ -1,8 +1,6 @@
 <?php
 
-// namespace phpbb\auth\provider;
 
-namespace acme\demo\auth\provider;
 
 header("Access-Control-Allow-Origin: *");
 // header("Content-Type: application/json; charset=UTF-8");
@@ -12,6 +10,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 
+
+define('IN_PHPBB', true);
+$phpbb_root_path = './../phpbb/';
+$phpEx = substr(strrchr(__FILE__, '..'), 1);
+include($phpbb_root_path . 'common.' . $phpEx);
+$user->session_begin();
+$auth->acl($user->data);
+$user->setup('');
 
 /**
  * Database authentication provider for phpBB3
@@ -57,6 +63,8 @@ class db2 extends \phpbb\auth\provider\base
                 'error_msg' => 'LOGIN_ERROR_USERNAME',
                 'user_row'  => array('user_id' => ANONYMOUS),
             );
+        } else {
+            print($username);
         }
 
         $username_clean = utf8_clean_string($username);

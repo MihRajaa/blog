@@ -6,3 +6,4 @@
  * by phpBB while loading the extensions.
  */
 
+require('./../ext/eparsons/restapi/vendor/autoload.php');

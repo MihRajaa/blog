@@ -273,6 +273,10 @@ class __TwigTemplate_9eb101d962bfbb02b72457dab28803d2 extends \Twig\Template
 
 ";
         // line 72
+        $previous_look_up_order = $this->env->getNamespaceLookUpOrder();
+        $this->env->setNamespaceLookUpOrder(array('oneall_sociallogin', '__main__'));
+        $this->env->loadTemplate('@oneall_sociallogin/event/overall_header_stylesheets_after.html')->display($context);
+        $this->env->setNamespaceLookUpOrder($previous_look_up_order);
         // line 73
         echo "
 </head>
@@ -432,6 +436,10 @@ class __TwigTemplate_9eb101d962bfbb02b72457dab28803d2 extends \Twig\Template
         echo "
 \t\t";
         // line 133
+        $previous_look_up_order = $this->env->getNamespaceLookUpOrder();
+        $this->env->setNamespaceLookUpOrder(array('oneall_sociallogin', '__main__'));
+        $this->env->loadTemplate('@oneall_sociallogin/event/overall_header_content_before.html')->display($context);
+        $this->env->setNamespaceLookUpOrder($previous_look_up_order);
     }
 
     public function getTemplateName()
@@ -446,7 +454,7 @@ class __TwigTemplate_9eb101d962bfbb02b72457dab28803d2 extends \Twig\Template
 
     public function getDebugInfo()
     {
-        return array (  435 => 133,  432 => 132,  422 => 128,  418 => 126,  416 => 125,  411 => 122,  410 => 121,  406 => 119,  393 => 118,  392 => 117,  389 => 116,  388 => 115,  384 => 113,  382 => 112,  374 => 107,  369 => 105,  363 => 104,  358 => 102,  354 => 101,  346 => 100,  341 => 98,  338 => 97,  335 => 96,  334 => 95,  328 => 92,  324 => 91,  320 => 90,  304 => 87,  299 => 84,  298 => 83,  291 => 78,  290 => 77,  281 => 75,  277 => 73,  276 => 72,  271 => 70,  268 => 69,  267 => 68,  259 => 65,  255 => 63,  247 => 61,  245 => 60,  242 => 59,  234 => 57,  232 => 56,  229 => 55,  221 => 53,  219 => 52,  214 => 50,  210 => 49,  205 => 48,  188 => 33,  186 => 32,  176 => 24,  170 => 22,  168 => 21,  165 => 20,  162 => 18,  149 => 17,  136 => 16,  125 => 15,  114 => 14,  103 => 13,  92 => 12,  81 => 11,  79 => 10,  54 => 8,  50 => 7,  40 => 2,  37 => 1,);
+        return array (  439 => 133,  436 => 132,  426 => 128,  422 => 126,  420 => 125,  415 => 122,  414 => 121,  410 => 119,  397 => 118,  396 => 117,  393 => 116,  392 => 115,  388 => 113,  386 => 112,  378 => 107,  373 => 105,  367 => 104,  362 => 102,  358 => 101,  350 => 100,  345 => 98,  342 => 97,  339 => 96,  338 => 95,  332 => 92,  328 => 91,  324 => 90,  308 => 87,  303 => 84,  302 => 83,  295 => 78,  294 => 77,  285 => 75,  281 => 73,  276 => 72,  271 => 70,  268 => 69,  267 => 68,  259 => 65,  255 => 63,  247 => 61,  245 => 60,  242 => 59,  234 => 57,  232 => 56,  229 => 55,  221 => 53,  219 => 52,  214 => 50,  210 => 49,  205 => 48,  188 => 33,  186 => 32,  176 => 24,  170 => 22,  168 => 21,  165 => 20,  162 => 18,  149 => 17,  136 => 16,  125 => 15,  114 => 14,  103 => 13,  92 => 12,  81 => 11,  79 => 10,  54 => 8,  50 => 7,  40 => 2,  37 => 1,);
     }
 
     public function getSourceContext()

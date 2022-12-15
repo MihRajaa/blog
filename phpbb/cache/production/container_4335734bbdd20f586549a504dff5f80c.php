@@ -30,15 +30,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         ];
         $this->methodMap = [
             'acl.permissions' => 'getAcl_PermissionsService',
-            'acme.demo.command.sample' => 'getAcme_Demo_Command_SampleService',
-            'acme.demo.controller.acp' => 'getAcme_Demo_Controller_AcpService',
-            'acme.demo.controller.main' => 'getAcme_Demo_Controller_MainService',
-            'acme.demo.controller.mcp' => 'getAcme_Demo_Controller_McpService',
-            'acme.demo.controller.ucp' => 'getAcme_Demo_Controller_UcpService',
-            'acme.demo.cron.task.sample' => 'getAcme_Demo_Cron_Task_SampleService',
-            'acme.demo.listener' => 'getAcme_Demo_ListenerService',
-            'acme.demo.notification.type.sample' => 'getAcme_Demo_Notification_Type_SampleService',
-            'acme.demo.service' => 'getAcme_Demo_ServiceService',
             'attachment.delete' => 'getAttachment_DeleteService',
             'attachment.manager' => 'getAttachment_ManagerService',
             'attachment.resync' => 'getAttachment_ResyncService',
@@ -53,6 +44,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'auth.provider.oauth.service.google' => 'getAuth_Provider_Oauth_Service_GoogleService',
             'auth.provider.oauth.service.twitter' => 'getAuth_Provider_Oauth_Service_TwitterService',
             'auth.provider.oauth.service_collection' => 'getAuth_Provider_Oauth_ServiceCollectionService',
+            'auth.provider.oneall_sociallogin' => 'getAuth_Provider_OneallSocialloginService',
             'auth.provider_collection' => 'getAuth_ProviderCollectionService',
             'avatar.driver.gravatar' => 'getAvatar_Driver_GravatarService',
             'avatar.driver.local' => 'getAvatar_Driver_LocalService',
@@ -140,6 +132,10 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'dbal.tools' => 'getDbal_ToolsService',
             'dbal.tools.factory' => 'getDbal_Tools_FactoryService',
             'dispatcher' => 'getDispatcherService',
+            'eparsons.restapi.controller.auth' => 'getEparsons_Restapi_Controller_AuthService',
+            'eparsons.restapi.controller.users' => 'getEparsons_Restapi_Controller_UsersService',
+            'eparsons.restapi.listener' => 'getEparsons_Restapi_ListenerService',
+            'eparsons.restapi.validation' => 'getEparsons_Restapi_ValidationService',
             'ext.manager' => 'getExt_ManagerService',
             'feed.forum' => 'getFeed_ForumService',
             'feed.forums' => 'getFeed_ForumsService',
@@ -212,6 +208,8 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'notification.type.topic_in_queue' => 'getNotification_Type_TopicInQueueService',
             'notification.type_collection' => 'getNotification_TypeCollectionService',
             'notification_manager' => 'getNotificationManagerService',
+            'oneall.sociallogin.helper' => 'getOneall_Sociallogin_HelperService',
+            'oneall.sociallogin.listener' => 'getOneall_Sociallogin_ListenerService',
             'pagination' => 'getPaginationService',
             'passwords.driver.argon2i' => 'getPasswords_Driver_Argon2iService',
             'passwords.driver.argon2id' => 'getPasswords_Driver_Argon2idService',
@@ -341,15 +339,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'text_formatter.renderer' => true,
             'text_formatter.utils' => true,
             'acl.permissions' => true,
-            'acme.demo.command.sample' => true,
-            'acme.demo.controller.acp' => true,
-            'acme.demo.controller.main' => true,
-            'acme.demo.controller.mcp' => true,
-            'acme.demo.controller.ucp' => true,
-            'acme.demo.cron.task.sample' => true,
-            'acme.demo.listener' => true,
-            'acme.demo.notification.type.sample' => true,
-            'acme.demo.service' => true,
             'attachment.delete' => true,
             'attachment.manager' => true,
             'attachment.resync' => true,
@@ -364,6 +353,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'auth.provider.oauth.service.google' => true,
             'auth.provider.oauth.service.twitter' => true,
             'auth.provider.oauth.service_collection' => true,
+            'auth.provider.oneall_sociallogin' => true,
             'auth.provider_collection' => true,
             'avatar.driver.gravatar' => true,
             'avatar.driver.local' => true,
@@ -453,6 +443,10 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'dbal.tools' => true,
             'dbal.tools.factory' => true,
             'dispatcher' => true,
+            'eparsons.restapi.controller.auth' => true,
+            'eparsons.restapi.controller.users' => true,
+            'eparsons.restapi.listener' => true,
+            'eparsons.restapi.validation' => true,
             'ext.manager' => true,
             'feed.forum' => true,
             'feed.forums' => true,
@@ -525,6 +519,8 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'notification.type.topic_in_queue' => true,
             'notification.type_collection' => true,
             'notification_manager' => true,
+            'oneall.sociallogin.helper' => true,
+            'oneall.sociallogin.listener' => true,
             'pagination' => true,
             'passwords.driver.argon2i' => true,
             'passwords.driver.argon2id' => true,
@@ -662,15 +658,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'Psr\\Container\\ContainerInterface' => true,
             'Symfony\\Component\\DependencyInjection\\ContainerInterface' => true,
             'acl.permissions' => true,
-            'acme.demo.command.sample' => true,
-            'acme.demo.controller.acp' => true,
-            'acme.demo.controller.main' => true,
-            'acme.demo.controller.mcp' => true,
-            'acme.demo.controller.ucp' => true,
-            'acme.demo.cron.task.sample' => true,
-            'acme.demo.listener' => true,
-            'acme.demo.notification.type.sample' => true,
-            'acme.demo.service' => true,
             'attachment.delete' => true,
             'attachment.manager' => true,
             'attachment.resync' => true,
@@ -685,6 +672,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'auth.provider.oauth.service.google' => true,
             'auth.provider.oauth.service.twitter' => true,
             'auth.provider.oauth.service_collection' => true,
+            'auth.provider.oneall_sociallogin' => true,
             'auth.provider_collection' => true,
             'avatar.driver.gravatar' => true,
             'avatar.driver.local' => true,
@@ -774,6 +762,10 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'dbal.tools' => true,
             'dbal.tools.factory' => true,
             'dispatcher' => true,
+            'eparsons.restapi.controller.auth' => true,
+            'eparsons.restapi.controller.users' => true,
+            'eparsons.restapi.listener' => true,
+            'eparsons.restapi.validation' => true,
             'ext.manager' => true,
             'feed.forum' => true,
             'feed.forums' => true,
@@ -848,6 +840,8 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'notification.type.topic_in_queue' => true,
             'notification.type_collection' => true,
             'notification_manager' => true,
+            'oneall.sociallogin.helper' => true,
+            'oneall.sociallogin.listener' => true,
             'pagination' => true,
             'passwords.driver.argon2i' => true,
             'passwords.driver.argon2id' => true,
@@ -1010,104 +1004,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     }
 
     /**
-     * Gets the private 'acme.demo.command.sample' shared service.
-     *
-     * @return \acme\demo\console\command\sample
-     */
-    protected function getAcme_Demo_Command_SampleService()
-    {
-        return $this->services['acme.demo.command.sample'] = new \acme\demo\console\command\sample(${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
-    }
-
-    /**
-     * Gets the private 'acme.demo.controller.acp' shared service.
-     *
-     * @return \acme\demo\controller\acp_controller
-     */
-    protected function getAcme_Demo_Controller_AcpService()
-    {
-        return $this->services['acme.demo.controller.acp'] = new \acme\demo\controller\acp_controller(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['log']) ? $this->services['log'] : $this->getLogService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
-    }
-
-    /**
-     * Gets the private 'acme.demo.controller.main' shared service.
-     *
-     * @return \acme\demo\controller\main_controller
-     */
-    protected function getAcme_Demo_Controller_MainService()
-    {
-        return $this->services['acme.demo.controller.main'] = new \acme\demo\controller\main_controller(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'});
-    }
-
-    /**
-     * Gets the private 'acme.demo.controller.mcp' shared service.
-     *
-     * @return \acme\demo\controller\mcp_controller
-     */
-    protected function getAcme_Demo_Controller_McpService()
-    {
-        return $this->services['acme.demo.controller.mcp'] = new \acme\demo\controller\mcp_controller(${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'});
-    }
-
-    /**
-     * Gets the private 'acme.demo.controller.ucp' shared service.
-     *
-     * @return \acme\demo\controller\ucp_controller
-     */
-    protected function getAcme_Demo_Controller_UcpService()
-    {
-        return $this->services['acme.demo.controller.ucp'] = new \acme\demo\controller\ucp_controller(${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'});
-    }
-
-    /**
-     * Gets the private 'acme.demo.cron.task.sample' shared service.
-     *
-     * @return \acme\demo\cron\task\sample
-     */
-    protected function getAcme_Demo_Cron_Task_SampleService()
-    {
-        $this->services['acme.demo.cron.task.sample'] = $instance = new \acme\demo\cron\task\sample(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'});
-
-        $instance->set_name('cron.task.acme.demo.sample');
-
-        return $instance;
-    }
-
-    /**
-     * Gets the private 'acme.demo.listener' shared service.
-     *
-     * @return \acme\demo\event\main_listener
-     */
-    protected function getAcme_Demo_ListenerService()
-    {
-        return $this->services['acme.demo.listener'] = new \acme\demo\event\main_listener(${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, 'php');
-    }
-
-    /**
-     * Gets the private 'acme.demo.notification.type.sample' service.
-     *
-     * @return \acme\demo\notification\type\sample
-     */
-    protected function getAcme_Demo_Notification_Type_SampleService()
-    {
-        $instance = new \acme\demo\notification\type\sample(${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['auth']) ? $this->services['auth'] : ($this->services['auth'] = new \phpbb\auth\auth())) && false ?: '_'}, './', 'php', 'phpbb_blogdbuser_notifications');
-
-        $instance->set_controller_helper(${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'});
-
-        return $instance;
-    }
-
-    /**
-     * Gets the private 'acme.demo.service' shared service.
-     *
-     * @return \acme\demo\service
-     */
-    protected function getAcme_Demo_ServiceService()
-    {
-        return $this->services['acme.demo.service'] = new \acme\demo\service(${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, 'phpbb_blogdbacme_demo_table');
-    }
-
-    /**
      * Gets the private 'attachment.delete' service.
      *
      * @return \phpbb\attachment\delete
@@ -1265,6 +1161,16 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     }
 
     /**
+     * Gets the private 'auth.provider.oneall_sociallogin' shared service.
+     *
+     * @return \oneall\sociallogin\auth\provider\oneall
+     */
+    protected function getAuth_Provider_OneallSocialloginService()
+    {
+        return $this->services['auth.provider.oneall_sociallogin'] = new \oneall\sociallogin\auth\provider\oneall(${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['passwords.manager']) ? $this->services['passwords.manager'] : $this->getPasswords_ManagerService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, $this, './', 'php');
+    }
+
+    /**
      * Gets the private 'auth.provider_collection' shared service.
      *
      * @return \phpbb\auth\provider_collection
@@ -1277,6 +1183,7 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('auth.provider.apache');
         $instance->add('auth.provider.ldap');
         $instance->add('auth.provider.oauth');
+        $instance->add('auth.provider.oneall_sociallogin');
 
         return $instance;
     }
@@ -1780,7 +1687,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('console.command.user.add');
         $instance->add('console.command.user.delete');
         $instance->add('console.command.user.reclean');
-        $instance->add('acme.demo.command.sample');
         $instance->add('phpbb.skeleton.command.create');
 
         return $instance;
@@ -2219,7 +2125,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('cron.task.text_reparser.post_text');
         $instance->add('cron.task.text_reparser.user_signature');
         $instance->add('cron.task.core.update_hashes');
-        $instance->add('acme.demo.cron.task.sample');
         $instance->add('phpbb.viglink.cron.task.viglink');
 
         return $instance;
@@ -2334,21 +2239,24 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     {
         $this->services['dispatcher'] = $instance = new \phpbb\event\dispatcher($this);
 
+        $instance->addListener('core.session_set_custom_ban', [0 => function () {
+            return ${($_ = isset($this->services['eparsons.restapi.listener']) ? $this->services['eparsons.restapi.listener'] : $this->getEparsons_Restapi_ListenerService()) && false ?: '_'};
+        }, 1 => 'handle_banned_user'], 0);
+        $instance->addListener('core.user_setup_after', [0 => function () {
+            return ${($_ = isset($this->services['eparsons.restapi.listener']) ? $this->services['eparsons.restapi.listener'] : $this->getEparsons_Restapi_ListenerService()) && false ?: '_'};
+        }, 1 => 'handle_user_setup_after_event'], 0);
+        $instance->addListener('core.page_header_after', [0 => function () {
+            return ${($_ = isset($this->services['oneall.sociallogin.listener']) ? $this->services['oneall.sociallogin.listener'] : $this->getOneall_Sociallogin_ListenerService()) && false ?: '_'};
+        }, 1 => 'setup'], 0);
         $instance->addListener('core.user_setup', [0 => function () {
-            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
-        }, 1 => 'load_language_on_setup'], 0);
-        $instance->addListener('core.page_header', [0 => function () {
-            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
-        }, 1 => 'add_page_header_link'], 0);
-        $instance->addListener('core.viewonline_overwrite_location', [0 => function () {
-            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
-        }, 1 => 'viewonline_page'], 0);
-        $instance->addListener('core.display_forums_modify_template_vars', [0 => function () {
-            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
-        }, 1 => 'display_forums_modify_template_vars'], 0);
-        $instance->addListener('core.permissions', [0 => function () {
-            return ${($_ = isset($this->services['acme.demo.listener']) ? $this->services['acme.demo.listener'] : $this->getAcme_Demo_ListenerService()) && false ?: '_'};
-        }, 1 => 'add_permissions'], 0);
+            return ${($_ = isset($this->services['oneall.sociallogin.listener']) ? $this->services['oneall.sociallogin.listener'] : $this->getOneall_Sociallogin_ListenerService()) && false ?: '_'};
+        }, 1 => 'add_language'], 0);
+        $instance->addListener('core.ucp_profile_reg_details_data', [0 => function () {
+            return ${($_ = isset($this->services['oneall.sociallogin.listener']) ? $this->services['oneall.sociallogin.listener'] : $this->getOneall_Sociallogin_ListenerService()) && false ?: '_'};
+        }, 1 => 'set_oa_user'], 0);
+        $instance->addListener('core.ucp_profile_reg_details_validate', [0 => function () {
+            return ${($_ = isset($this->services['oneall.sociallogin.listener']) ? $this->services['oneall.sociallogin.listener'] : $this->getOneall_Sociallogin_ListenerService()) && false ?: '_'};
+        }, 1 => 'skip_cur_password_check'], 0);
         $instance->addListener('core.user_setup', [0 => function () {
             return ${($_ = isset($this->services['phpbb.skeleton.listener']) ? $this->services['phpbb.skeleton.listener'] : $this->getPhpbb_Skeleton_ListenerService()) && false ?: '_'};
         }, 1 => 'load_language_on_setup'], 0);
@@ -2390,6 +2298,46 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         }, 1 => 'onKernelException'], -64);
 
         return $instance;
+    }
+
+    /**
+     * Gets the private 'eparsons.restapi.controller.auth' shared service.
+     *
+     * @return \eparsons\restapi\controller\auth\Authentication
+     */
+    protected function getEparsons_Restapi_Controller_AuthService()
+    {
+        return $this->services['eparsons.restapi.controller.auth'] = new \eparsons\restapi\controller\auth\Authentication(${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['auth']) ? $this->services['auth'] : ($this->services['auth'] = new \phpbb\auth\auth())) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['eparsons.restapi.validation']) ? $this->services['eparsons.restapi.validation'] : $this->getEparsons_Restapi_ValidationService()) && false ?: '_'}, ${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'eparsons.restapi.controller.users' shared service.
+     *
+     * @return \eparsons\restapi\controller\users\Users
+     */
+    protected function getEparsons_Restapi_Controller_UsersService()
+    {
+        return $this->services['eparsons.restapi.controller.users'] = new \eparsons\restapi\controller\users\Users(${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['eparsons.restapi.validation']) ? $this->services['eparsons.restapi.validation'] : $this->getEparsons_Restapi_ValidationService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'eparsons.restapi.listener' shared service.
+     *
+     * @return \eparsons\restapi\event\event_listener
+     */
+    protected function getEparsons_Restapi_ListenerService()
+    {
+        return $this->services['eparsons.restapi.listener'] = new \eparsons\restapi\event\event_listener(${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'});
+    }
+
+    /**
+     * Gets the private 'eparsons.restapi.validation' shared service.
+     *
+     * @return \eparsons\restapi\Validation
+     */
+    protected function getEparsons_Restapi_ValidationService()
+    {
+        return $this->services['eparsons.restapi.validation'] = new \eparsons\restapi\Validation(${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'});
     }
 
     /**
@@ -3247,7 +3195,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
         $instance->add('notification.type.topic');
         $instance->add('notification.type.topic_in_queue');
         $instance->add('notification.type.forum');
-        $instance->add('acme.demo.notification.type.sample');
 
         return $instance;
     }
@@ -3260,6 +3207,26 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
     protected function getNotificationManagerService()
     {
         return $this->services['notification_manager'] = new \phpbb\notification\manager(${($_ = isset($this->services['notification.type_collection']) ? $this->services['notification.type_collection'] : $this->getNotification_TypeCollectionService()) && false ?: '_'}, ${($_ = isset($this->services['notification.method_collection']) ? $this->services['notification.method_collection'] : $this->getNotification_MethodCollectionService()) && false ?: '_'}, $this, ${($_ = isset($this->services['user_loader']) ? $this->services['user_loader'] : $this->getUserLoaderService()) && false ?: '_'}, ${($_ = isset($this->services['dispatcher']) ? $this->services['dispatcher'] : $this->getDispatcherService()) && false ?: '_'}, ${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['cache']) ? $this->services['cache'] : $this->getCacheService()) && false ?: '_'}, ${($_ = isset($this->services['language']) ? $this->services['language'] : $this->getLanguageService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, 'phpbb_blogdbnotification_types', 'phpbb_blogdbuser_notifications');
+    }
+
+    /**
+     * Gets the private 'oneall.sociallogin.helper' shared service.
+     *
+     * @return \oneall\sociallogin\core\helper
+     */
+    protected function getOneall_Sociallogin_HelperService()
+    {
+        return $this->services['oneall.sociallogin.helper'] = new \oneall\sociallogin\core\helper(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, ${($_ = isset($this->services['auth']) ? $this->services['auth'] : ($this->services['auth'] = new \phpbb\auth\auth())) && false ?: '_'}, ${($_ = isset($this->services['dbal.conn']) ? $this->services['dbal.conn'] : ($this->services['dbal.conn'] = new \phpbb\db\driver\factory($this))) && false ?: '_'}, ${($_ = isset($this->services['dispatcher']) ? $this->services['dispatcher'] : $this->getDispatcherService()) && false ?: '_'}, ${($_ = isset($this->services['passwords.manager']) ? $this->services['passwords.manager'] : $this->getPasswords_ManagerService()) && false ?: '_'}, './', 'php', 'phpbb_blogdb');
+    }
+
+    /**
+     * Gets the private 'oneall.sociallogin.listener' shared service.
+     *
+     * @return \oneall\sociallogin\event\listener
+     */
+    protected function getOneall_Sociallogin_ListenerService()
+    {
+        return $this->services['oneall.sociallogin.listener'] = new \oneall\sociallogin\event\listener(${($_ = isset($this->services['config']) ? $this->services['config'] : $this->getConfigService()) && false ?: '_'}, ${($_ = isset($this->services['config_text']) ? $this->services['config_text'] : $this->getConfigTextService()) && false ?: '_'}, ${($_ = isset($this->services['controller.helper']) ? $this->services['controller.helper'] : $this->getController_HelperService()) && false ?: '_'}, ${($_ = isset($this->services['request']) ? $this->services['request'] : ($this->services['request'] = new \phpbb\request\request(NULL, true))) && false ?: '_'}, ${($_ = isset($this->services['template']) ? $this->services['template'] : $this->getTemplateService()) && false ?: '_'}, ${($_ = isset($this->services['user']) ? $this->services['user'] : $this->getUserService()) && false ?: '_'}, './', 'php', ${($_ = isset($this->services['oneall.sociallogin.helper']) ? $this->services['oneall.sociallogin.helper'] : $this->getOneall_Sociallogin_HelperService()) && false ?: '_'});
     }
 
     /**
@@ -4819,7 +4786,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
             'debug.show_errors' => false,
             'debug.error_handler' => false,
             'session.log_errors' => false,
-            'acme.demo.tables.demo_table' => 'phpbb_blogdbacme_demo_table',
             'tables' => [
                 'acl_groups' => 'phpbb_blogdbacl_groups',
                 'acl_options' => 'phpbb_blogdbacl_options',
@@ -4899,7 +4865,6 @@ class phpbb_cache_container extends \Symfony\Component\DependencyInjection\Conta
                 'warnings' => 'phpbb_blogdbwarnings',
                 'words' => 'phpbb_blogdbwords',
                 'zebra' => 'phpbb_blogdbzebra',
-                'demo_table' => 'phpbb_blogdbacme_demo_table',
             ],
             'core.adm_relative_path' => 'adm/',
             'core.table_prefix' => 'phpbb_blogdb',
