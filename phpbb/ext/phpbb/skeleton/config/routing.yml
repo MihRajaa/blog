@@ -1,3 +1,0 @@
-phpbb_skeleton_controller:
-    path: /skeleton
-    defaults: { _controller: phpbb.skeleton.controller:handle }

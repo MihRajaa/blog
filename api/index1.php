@@ -11,16 +11,17 @@ define('IN_PHPBB', true);
 $phpbb_root_path = './../phpbb/';
 $phpEx = substr(strrchr(__FILE__, '..'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
+
 $user->session_begin();
 $auth->acl($user->data);
 $user->setup('');
 
-$names = $request->variable_names(\phpbb\request\request_interface::GET);
-var_dump($names);
+// $names = $request->variable_names(\phpbb\request\request_interface::GET);
+// var_dump($names);
 
-$start = $request->variable('start', \phpbb\request\request_interface::GET);
-$submit = $request->variable('submit', \phpbb\request\request_interface::POST);
-$session = $request->variable('user_sid', \phpbb\request\request_interface::COOKIE);
+// $start = $request->variable('start', \phpbb\request\request_interface::GET);
+// $submit = $request->variable('submit', \phpbb\request\request_interface::POST);
+// $session = $request->variable('user_sid', \phpbb\request\request_interface::COOKIE);
 
 
 
