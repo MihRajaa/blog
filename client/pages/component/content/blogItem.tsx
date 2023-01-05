@@ -1,5 +1,7 @@
 import React from 'react';
+
 import ItemDetails from './itemDetails';
+// import { allPosts } from '../../../redux/slices/postsSlice';
 
 export default function BlogItem() {
   return (

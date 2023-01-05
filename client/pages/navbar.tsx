@@ -13,7 +13,7 @@ function Navbar() {
       <div>
         <ul className='nav justify-content-end'>
           <li className='nav-item btn btn-outline-primary'>
-            <Link className='text-decoration-none' href='/content'>
+            <Link className='text-decoration-none' href='/'>
               Blog
             </Link>
           </li>

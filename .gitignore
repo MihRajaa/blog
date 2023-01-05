@@ -2,3 +2,8 @@
 
 /blog_vercel/my-blog
 /.vscode
+
+
+
+/scraping_data/sqlmodel/models/__pycache__
+/forum/cache
