@@ -34,5 +34,5 @@ for tweet in public_tweets:
 js = json.dumps(data)
 
 
-with open("tweetter-result.json", "w") as f:
+with open("./tweetter-result.json", "w") as f:
     f.write(js)
