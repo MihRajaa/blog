@@ -1,17 +1,14 @@
 from typing import Optional
 from sqlmodel import Field, SQLModel
 
-
-class Phpbb_forums(SQLModel, Table=True):
+class Phpbb_forums(SQLModel, table=True):
     forum_id: Optional[int] = Field(default=None, primary_key=True)
     parent_id: int = '0'
     left_id: int = '0'
     right_id: int = '0'
-
+    forum_parents: str = ''
     forum_name: str
-    forum_parents: str
     forum_desc: str
-
     forum_desc_bitfield: str = ''
     forum_desc_options: int = '7'
     forum_desc_uid: str = ''
@@ -25,7 +22,7 @@ class Phpbb_forums(SQLModel, Table=True):
     forum_rules_options: int = '7'
     forum_rules_uid: str = ''
     forum_topics_per_page: int = '0'
-    forum_type: int = '0'
+    forum_type: int = '1'
     forum_status: int = '0'
     forum_last_post_id: int = '0'
     forum_last_poster_id: int = '0'

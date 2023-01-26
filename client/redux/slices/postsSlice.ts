@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
@@ -9,6 +9,7 @@ export const getPosts = createAsyncThunk('fetchPosts', async () => {
   const response = await axios
     .get('http://localhost:4000/posts')
     .then((res) => res.data);
+
   return response;
 });
 
@@ -21,12 +22,11 @@ export const postsSlice = createSlice({
     // },
   },
   extraReducers: (builder) => {
-    builder.addCase(
-      getPosts.fulfilled,
-      (state, action: PayloadAction<string>) => {
-        state.postsState.push(action.payload);
-      }
-    );
+    builder.addCase(getPosts.fulfilled, (state, action) => {
+      action.payload.map((post) => {
+        state.postsState.push(post);
+      });
+    });
   },
 });
 

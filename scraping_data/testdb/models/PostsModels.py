@@ -34,3 +34,8 @@ class Phpbb_posts(SQLModel, table=True):
     post_edit_reason: str = ''
     post_delete_reason: str = ''
     poster_ip: str = ''
+    
+
+
+
+

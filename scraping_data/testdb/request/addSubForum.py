@@ -4,18 +4,18 @@
 import json
 from sqlmodel import Session
 
-from scraping_data.sqlmodel.models.postModels import Phpbb_posts
+from models.ForumsModels import PhpbbForums
 from db import engine
 
 
 def create_subForm():
-    for dic in res_list:
-        post = Phpbb_posts(
+    # for dic in res_list:
+        post = PhpbbForums(
             forum_id=5,
             poster_id=2,
             post_username='admin',
-            post_subject=dic['title'],
-            post_text=dic['text'],
+            post_subject=['title'],
+            post_text=['text'],
         )
 
         with Session(engine) as session:
@@ -30,9 +30,3 @@ def create_subForm():
                 print("error:", str(e))
 
 
-def main():
-    create_subForm()
-
-
-if __name__ == "__main__":
-    main()

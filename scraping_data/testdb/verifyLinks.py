@@ -3,7 +3,7 @@
 import requests
 from sqlmodel import Session, select
 
-from models.postModels import Phpbb_posts
+from models.PostsModels import Phpbb_posts
 from db import engine
 
 

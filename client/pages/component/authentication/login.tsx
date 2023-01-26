@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import Content from '../../content';
+import Home from '../../index';
 
 export default function Login() {
   let loggedIn = false;
@@ -61,7 +61,7 @@ export default function Login() {
           </p>
         </div>
       ) : (
-        <Content />
+        <Home />
       )}
     </>
   );

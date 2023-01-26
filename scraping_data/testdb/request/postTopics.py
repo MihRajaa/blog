@@ -3,7 +3,7 @@
 import json
 from sqlmodel import Session
 
-from models.postModels import Phpbb_posts
+from models.PostsModels import Phpbb_posts
 from db import engine
 
 
@@ -45,9 +45,4 @@ def create_posts():
                 print("error:", str(e))
 
 
-def main():
-    create_posts()
 
-
-if __name__ == "__main__":
-    main()
