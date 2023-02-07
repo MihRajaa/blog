@@ -12,7 +12,13 @@ export default function Home() {
 
   return (
     <div className='container-fluid'>
-      <Content />
+      <div className='d-grid'>
+        <div className='row justify-content-around m-3'>
+          <div className='col bg-primary m-2'>pub left</div>
+          <Content />
+          <div className='col bg-primary m-2'>pub right</div>
+        </div>
+      </div>
     </div>
   );
 }

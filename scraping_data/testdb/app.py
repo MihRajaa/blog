@@ -1,16 +1,16 @@
-from request.addForum import create_forum
-from request.addSubForum import create_subForm
-from request.postTopics import create_posts
-from request.replyTopics import create_reply
+from addForum import create_forum
+from addSubForum import create_subForm
+from postTopics import create_posts
+from replyTopics import create_reply
 
 
 def main():
     # ajouter serie ou film nom comme forum
-    create_forum()
+    # create_forum()
     # ajouter sous serie ou film seasons comme sous forum
-    create_subForm()
+    # create_subForm()
     # ajouter des posts concernons la film ou la serie
-    create_posts()
+    # create_posts()
     # ajouter les reponse sur une poste
     create_reply()
 
