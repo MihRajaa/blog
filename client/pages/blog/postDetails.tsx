@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 const postDetails = () => {
   const router = useRouter();
   const post = router.query;
+  console.log(post.post_id);
 
   return (
     <>
@@ -14,7 +15,7 @@ const postDetails = () => {
         <PostHeader post={post} />
       </div>
       <div className='card text-center'>
-        <PostComments post={post} />
+        <PostComments post_id={post.post_id} />
       </div>
     </>
   );

@@ -14,7 +14,7 @@ export const getTopics = () => {
   return topics;
 };
 
-export const getComments = (id) => {
+export const getComments = (id: any) => {
   const posts = getPosts();
   const comments = posts.filter((post) => {
     return post.topic_id === id;

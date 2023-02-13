@@ -1,23 +1,23 @@
 import React from 'react';
 import { getComments } from '../../Scripts/posts';
 
-export default function PostComments({ post }) {
-  const comment = getComments(2);
+export default function PostComments({ post_id }) {
+  const comments = getComments(Number(post_id));
+  console.log(typeof post_id, post_id);
 
   return (
     <div className='row d-flex justify-content-center m-3'>
-      <div className='card w-75 m-2'>
-        <div className='card-body'>
-          <h5 className='card-title'>Card title</h5>
-          <p className='card-text'>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-          <a href='#' className='btn btn-primary'>
-            Button
-          </a>
-        </div>
-      </div>
+      {comments &&
+        comments.map((comment) => {
+          return (
+            <div className='card w-75 m-2' key={comment.post_id}>
+              <div className='card-body'>
+                <h5 className='card-title'>{comment.post_subject}</h5>
+                <p className='card-text'>{comment.post_text}</p>
+              </div>
+            </div>
+          );
+        })}
     </div>
   );
 }
