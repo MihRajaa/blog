@@ -1,9 +1,8 @@
-/scraping_data/testdb/env/
-
 /blog_vercel/my-blog
 /.vscode
 
+/testdb/models/__pycache__
+/testdb/__pycache__
+/testdb/env
 
-
-/scraping_data/sqlmodel/models/__pycache__
 /forum/cache

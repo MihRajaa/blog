@@ -1,0 +1,11 @@
+FROM mariadb:latest
+
+# Copy the blogdb.sql file to the /docker-entrypoint-initdb.d directory
+COPY blogdb.sql /docker-entrypoint-initdb.d/
+
+# Set the environment variables for the MariaDB container
+ENV MYSQL_ROOT_PASSWORD=password123
+ENV MYSQL_DATABASE=blogdb
+ENV MYSQL_USER=blog_user
+ENV MYSQL_PASSWORD=password123
+

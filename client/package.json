@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q src/app.ts\" \"next dev\"",
+    "dev": "ts-node src/index.ts",
     "build": "next build",
-    "start": "ts-node src/index.ts",
+    "start": "concurrently \"npx tsc --watch\" \"nodemon -q src/app.ts\" \"next dev\"",
     "lint": "next lint",
     "typeorm": "typeorm-ts-node-commonjs"
   },
