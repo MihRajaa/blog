@@ -34,7 +34,7 @@ server.get('/posts', async function (req: Request, res: Response) {
   return handle(req, res);
 });
 
-server.listen(8080, (err?: any) => {
+server.listen(4000, (err?: any) => {
   if (err) throw err;
-  console.log('> Ready on http://localhost:8080');
+  console.log('> Ready on http://localhost:4000');
 });

@@ -12,6 +12,23 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Dumping database structure for blogdb
+CREATE DATABASE IF NOT EXISTS `blogdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `blogdb`;
+
+-- Dumping structure for table blogdb.phpbb_acl_groups
+CREATE TABLE IF NOT EXISTS `phpbb_acl_groups` (
+  `group_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_option_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_role_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_setting` tinyint(2) NOT NULL DEFAULT 0,
+  KEY `group_id` (`group_id`),
+  KEY `auth_opt_id` (`auth_option_id`),
+  KEY `auth_role_id` (`auth_role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_acl_groups: ~48 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_acl_groups` DISABLE KEYS */;
 INSERT INTO `phpbb_acl_groups` (`group_id`, `forum_id`, `auth_option_id`, `auth_role_id`, `auth_setting`) VALUES
@@ -68,6 +85,17 @@ INSERT INTO `phpbb_acl_groups` (`group_id`, `forum_id`, `auth_option_id`, `auth_
 	(1, 4, 0, 17, 0),
 	(7, 4, 0, 24, 0);
 /*!40000 ALTER TABLE `phpbb_acl_groups` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_acl_options
+CREATE TABLE IF NOT EXISTS `phpbb_acl_options` (
+  `auth_option_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `auth_option` varchar(50) NOT NULL DEFAULT '',
+  `is_global` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `is_local` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `founder_only` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`auth_option_id`),
+  UNIQUE KEY `auth_option` (`auth_option`)
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_acl_options: ~125 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_acl_options` DISABLE KEYS */;
@@ -199,6 +227,18 @@ INSERT INTO `phpbb_acl_options` (`auth_option_id`, `auth_option`, `is_global`, `
 	(125, 'u_viewprofile', 1, 0, 0);
 /*!40000 ALTER TABLE `phpbb_acl_options` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_acl_roles
+CREATE TABLE IF NOT EXISTS `phpbb_acl_roles` (
+  `role_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(255) NOT NULL DEFAULT '',
+  `role_description` text NOT NULL,
+  `role_type` varchar(10) NOT NULL DEFAULT '',
+  `role_order` smallint(4) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`role_id`),
+  KEY `role_type` (`role_type`),
+  KEY `role_order` (`role_order`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_acl_roles: ~24 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_acl_roles` DISABLE KEYS */;
 INSERT INTO `phpbb_acl_roles` (`role_id`, `role_name`, `role_description`, `role_type`, `role_order`) VALUES
@@ -227,6 +267,15 @@ INSERT INTO `phpbb_acl_roles` (`role_id`, `role_name`, `role_description`, `role
 	(23, 'ROLE_USER_NEW_MEMBER', 'ROLE_DESCRIPTION_USER_NEW_MEMBER', 'u_', 6),
 	(24, 'ROLE_FORUM_NEW_MEMBER', 'ROLE_DESCRIPTION_FORUM_NEW_MEMBER', 'f_', 10);
 /*!40000 ALTER TABLE `phpbb_acl_roles` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_acl_roles_data
+CREATE TABLE IF NOT EXISTS `phpbb_acl_roles_data` (
+  `role_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_option_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_setting` tinyint(2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`role_id`,`auth_option_id`),
+  KEY `ath_op_id` (`auth_option_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_acl_roles_data: ~422 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_acl_roles_data` DISABLE KEYS */;
@@ -655,27 +704,117 @@ INSERT INTO `phpbb_acl_roles_data` (`role_id`, `auth_option_id`, `auth_setting`)
 	(24, 17, 0);
 /*!40000 ALTER TABLE `phpbb_acl_roles_data` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_acl_users
+CREATE TABLE IF NOT EXISTS `phpbb_acl_users` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_option_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_role_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `auth_setting` tinyint(2) NOT NULL DEFAULT 0,
+  KEY `user_id` (`user_id`),
+  KEY `auth_option_id` (`auth_option_id`),
+  KEY `auth_role_id` (`auth_role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_acl_users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_acl_users` DISABLE KEYS */;
 INSERT INTO `phpbb_acl_users` (`user_id`, `forum_id`, `auth_option_id`, `auth_role_id`, `auth_setting`) VALUES
 	(2, 0, 0, 5, 0);
 /*!40000 ALTER TABLE `phpbb_acl_users` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_attachments
+CREATE TABLE IF NOT EXISTS `phpbb_attachments` (
+  `attach_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `post_msg_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `in_message` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `poster_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `is_orphan` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `physical_filename` varchar(255) NOT NULL DEFAULT '',
+  `real_filename` varchar(255) NOT NULL DEFAULT '',
+  `download_count` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `attach_comment` text NOT NULL,
+  `extension` varchar(100) NOT NULL DEFAULT '',
+  `mimetype` varchar(100) NOT NULL DEFAULT '',
+  `filesize` int(20) unsigned NOT NULL DEFAULT 0,
+  `filetime` int(11) unsigned NOT NULL DEFAULT 0,
+  `thumbnail` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`attach_id`),
+  KEY `filetime` (`filetime`),
+  KEY `post_msg_id` (`post_msg_id`),
+  KEY `topic_id` (`topic_id`),
+  KEY `poster_id` (`poster_id`),
+  KEY `is_orphan` (`is_orphan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_attachments: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_attachments` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_attachments` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_banlist
+CREATE TABLE IF NOT EXISTS `phpbb_banlist` (
+  `ban_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ban_userid` int(10) unsigned NOT NULL DEFAULT 0,
+  `ban_ip` varchar(40) NOT NULL DEFAULT '',
+  `ban_email` varchar(100) NOT NULL DEFAULT '',
+  `ban_start` int(11) unsigned NOT NULL DEFAULT 0,
+  `ban_end` int(11) unsigned NOT NULL DEFAULT 0,
+  `ban_exclude` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `ban_reason` varchar(255) NOT NULL DEFAULT '',
+  `ban_give_reason` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ban_id`),
+  KEY `ban_end` (`ban_end`),
+  KEY `ban_user` (`ban_userid`,`ban_exclude`),
+  KEY `ban_email` (`ban_email`,`ban_exclude`),
+  KEY `ban_ip` (`ban_ip`,`ban_exclude`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_banlist: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_banlist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_banlist` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_bbcodes
+CREATE TABLE IF NOT EXISTS `phpbb_bbcodes` (
+  `bbcode_id` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `bbcode_tag` varchar(16) NOT NULL DEFAULT '',
+  `bbcode_helpline` text NOT NULL,
+  `display_on_posting` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `bbcode_match` text NOT NULL,
+  `bbcode_tpl` mediumtext NOT NULL,
+  `first_pass_match` mediumtext NOT NULL,
+  `first_pass_replace` mediumtext NOT NULL,
+  `second_pass_match` mediumtext NOT NULL,
+  `second_pass_replace` mediumtext NOT NULL,
+  PRIMARY KEY (`bbcode_id`),
+  KEY `display_on_post` (`display_on_posting`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_bbcodes: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_bbcodes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_bbcodes` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_bookmarks
+CREATE TABLE IF NOT EXISTS `phpbb_bookmarks` (
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`topic_id`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_bookmarks: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_bookmarks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_bookmarks` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_bots
+CREATE TABLE IF NOT EXISTS `phpbb_bots` (
+  `bot_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `bot_active` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `bot_name` varchar(255) NOT NULL DEFAULT '',
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `bot_agent` varchar(255) NOT NULL DEFAULT '',
+  `bot_ip` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`bot_id`),
+  KEY `bot_active` (`bot_active`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_bots: ~55 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_bots` DISABLE KEYS */;
@@ -736,6 +875,15 @@ INSERT INTO `phpbb_bots` (`bot_id`, `bot_active`, `bot_name`, `user_id`, `bot_ag
 	(54, 1, 'Yahoo [Bot]', 56, 'Yahoo! Slurp', ''),
 	(55, 1, 'YahooSeeker [Bot]', 57, 'YahooSeeker/', '');
 /*!40000 ALTER TABLE `phpbb_bots` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_config
+CREATE TABLE IF NOT EXISTS `phpbb_config` (
+  `config_name` varchar(255) NOT NULL DEFAULT '',
+  `config_value` varchar(255) NOT NULL DEFAULT '',
+  `is_dynamic` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`config_name`),
+  KEY `is_dynamic` (`is_dynamic`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_config: ~349 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_config` DISABLE KEYS */;
@@ -1092,6 +1240,13 @@ INSERT INTO `phpbb_config` (`config_name`, `config_value`, `is_dynamic`) VALUES
 	('warnings_last_gc', '1674727421', 1);
 /*!40000 ALTER TABLE `phpbb_config` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_config_text
+CREATE TABLE IF NOT EXISTS `phpbb_config_text` (
+  `config_name` varchar(255) NOT NULL DEFAULT '',
+  `config_value` mediumtext NOT NULL,
+  PRIMARY KEY (`config_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_config_text: ~4 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_config_text` DISABLE KEYS */;
 INSERT INTO `phpbb_config_text` (`config_name`, `config_value`) VALUES
@@ -1102,23 +1257,71 @@ INSERT INTO `phpbb_config_text` (`config_name`, `config_value`) VALUES
 	('reparser_resume', 'a:3:{s:24:"text_reparser.poll_title";a:3:{s:9:"range-min";i:1;s:9:"range-max";i:0;s:10:"range-size";i:100;}s:23:"text_reparser.post_text";a:3:{s:9:"range-min";i:1;s:9:"range-max";i:0;s:10:"range-size";i:100;}s:28:"text_reparser.user_signature";a:3:{s:9:"range-min";i:1;s:9:"range-max";i:0;s:10:"range-size";i:100;}}');
 /*!40000 ALTER TABLE `phpbb_config_text` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_confirm
+CREATE TABLE IF NOT EXISTS `phpbb_confirm` (
+  `confirm_id` char(32) NOT NULL DEFAULT '',
+  `session_id` char(32) NOT NULL DEFAULT '',
+  `confirm_type` tinyint(3) NOT NULL DEFAULT 0,
+  `code` varchar(8) NOT NULL DEFAULT '',
+  `seed` int(10) unsigned NOT NULL DEFAULT 0,
+  `attempts` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`session_id`,`confirm_id`),
+  KEY `confirm_type` (`confirm_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_confirm: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_confirm` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_confirm` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_disallow
+CREATE TABLE IF NOT EXISTS `phpbb_disallow` (
+  `disallow_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `disallow_username` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`disallow_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_disallow: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_disallow` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_disallow` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_drafts
+CREATE TABLE IF NOT EXISTS `phpbb_drafts` (
+  `draft_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `save_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `draft_subject` varchar(255) NOT NULL DEFAULT '',
+  `draft_message` mediumtext NOT NULL,
+  PRIMARY KEY (`draft_id`),
+  KEY `save_time` (`save_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_drafts: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_drafts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_drafts` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_ext
+CREATE TABLE IF NOT EXISTS `phpbb_ext` (
+  `ext_name` varchar(255) NOT NULL DEFAULT '',
+  `ext_active` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `ext_state` text NOT NULL,
+  UNIQUE KEY `ext_name` (`ext_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_ext: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_ext` DISABLE KEYS */;
 INSERT INTO `phpbb_ext` (`ext_name`, `ext_active`, `ext_state`) VALUES
 	('phpbb/viglink', 1, 'b:0;');
 /*!40000 ALTER TABLE `phpbb_ext` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_extensions
+CREATE TABLE IF NOT EXISTS `phpbb_extensions` (
+  `extension_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `extension` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`extension_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_extensions: ~54 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_extensions` DISABLE KEYS */;
@@ -1179,6 +1382,20 @@ INSERT INTO `phpbb_extensions` (`extension_id`, `group_id`, `extension`) VALUES
 	(54, 5, 'ogm');
 /*!40000 ALTER TABLE `phpbb_extensions` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_extension_groups
+CREATE TABLE IF NOT EXISTS `phpbb_extension_groups` (
+  `group_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(255) NOT NULL DEFAULT '',
+  `cat_id` tinyint(2) NOT NULL DEFAULT 0,
+  `allow_group` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `download_mode` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `upload_icon` varchar(255) NOT NULL DEFAULT '',
+  `max_filesize` int(20) unsigned NOT NULL DEFAULT 0,
+  `allowed_forums` text NOT NULL,
+  `allow_in_pm` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_extension_groups: ~5 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_extension_groups` DISABLE KEYS */;
 INSERT INTO `phpbb_extension_groups` (`group_id`, `group_name`, `cat_id`, `allow_group`, `download_mode`, `upload_icon`, `max_filesize`, `allowed_forums`, `allow_in_pm`) VALUES
@@ -1188,6 +1405,63 @@ INSERT INTO `phpbb_extension_groups` (`group_id`, `group_name`, `cat_id`, `allow
 	(4, 'DOCUMENTS', 0, 0, 1, '', 0, '', 0),
 	(5, 'DOWNLOADABLE_FILES', 0, 0, 1, '', 0, '', 0);
 /*!40000 ALTER TABLE `phpbb_extension_groups` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_forums
+CREATE TABLE IF NOT EXISTS `phpbb_forums` (
+  `forum_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `left_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `right_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_parents` mediumtext NOT NULL,
+  `forum_name` varchar(255) NOT NULL DEFAULT '',
+  `forum_desc` text NOT NULL,
+  `forum_desc_bitfield` varchar(255) NOT NULL DEFAULT '',
+  `forum_desc_options` int(11) unsigned NOT NULL DEFAULT 7,
+  `forum_desc_uid` varchar(8) NOT NULL DEFAULT '',
+  `forum_link` varchar(255) NOT NULL DEFAULT '',
+  `forum_password` varchar(255) NOT NULL DEFAULT '',
+  `forum_style` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_image` varchar(255) NOT NULL DEFAULT '',
+  `forum_rules` text NOT NULL,
+  `forum_rules_link` varchar(255) NOT NULL DEFAULT '',
+  `forum_rules_bitfield` varchar(255) NOT NULL DEFAULT '',
+  `forum_rules_options` int(11) unsigned NOT NULL DEFAULT 7,
+  `forum_rules_uid` varchar(8) NOT NULL DEFAULT '',
+  `forum_topics_per_page` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `forum_type` tinyint(4) NOT NULL DEFAULT 0,
+  `forum_status` tinyint(4) NOT NULL DEFAULT 0,
+  `forum_last_post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_last_poster_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_last_post_subject` varchar(255) NOT NULL DEFAULT '',
+  `forum_last_post_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `forum_last_poster_name` varchar(255) NOT NULL DEFAULT '',
+  `forum_last_poster_colour` varchar(6) NOT NULL DEFAULT '',
+  `forum_flags` tinyint(4) NOT NULL DEFAULT 32,
+  `display_on_index` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_indexing` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_icons` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_prune` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `prune_next` int(11) unsigned NOT NULL DEFAULT 0,
+  `prune_days` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `prune_viewed` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `prune_freq` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `display_subforum_list` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `display_subforum_limit` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `forum_options` int(20) unsigned NOT NULL DEFAULT 0,
+  `enable_shadow_prune` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `prune_shadow_days` mediumint(8) unsigned NOT NULL DEFAULT 7,
+  `prune_shadow_freq` mediumint(8) unsigned NOT NULL DEFAULT 1,
+  `prune_shadow_next` int(11) NOT NULL DEFAULT 0,
+  `forum_posts_approved` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_posts_unapproved` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_posts_softdeleted` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_topics_approved` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_topics_unapproved` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `forum_topics_softdeleted` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`forum_id`),
+  KEY `left_right_id` (`left_id`,`right_id`),
+  KEY `forum_lastpost_id` (`forum_last_post_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_forums: ~8 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_forums` DISABLE KEYS */;
@@ -1203,9 +1477,25 @@ INSERT INTO `phpbb_forums` (`forum_id`, `parent_id`, `left_id`, `right_id`, `for
 	(13, 4, 2, 7, '', 'vikings', 'la serie de vikings ', '', 7, '', '', '', 0, '', '', '', '', 7, '', 0, 1, 0, 0, 0, '', 0, '', '', 32, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 7, 1, 0, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `phpbb_forums` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_forums_access
+CREATE TABLE IF NOT EXISTS `phpbb_forums_access` (
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `session_id` char(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`forum_id`,`user_id`,`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_forums_access: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_forums_access` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_forums_access` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_forums_track
+CREATE TABLE IF NOT EXISTS `phpbb_forums_track` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `mark_time` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`,`forum_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_forums_track: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_forums_track` DISABLE KEYS */;
@@ -1213,9 +1503,46 @@ INSERT INTO `phpbb_forums_track` (`user_id`, `forum_id`, `mark_time`) VALUES
 	(2, 5, 1672589340);
 /*!40000 ALTER TABLE `phpbb_forums_track` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_forums_watch
+CREATE TABLE IF NOT EXISTS `phpbb_forums_watch` (
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `notify_status` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  KEY `forum_id` (`forum_id`),
+  KEY `user_id` (`user_id`),
+  KEY `notify_stat` (`notify_status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_forums_watch: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_forums_watch` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_forums_watch` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_groups
+CREATE TABLE IF NOT EXISTS `phpbb_groups` (
+  `group_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `group_type` tinyint(4) NOT NULL DEFAULT 1,
+  `group_founder_manage` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `group_skip_auth` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `group_name` varchar(255) NOT NULL DEFAULT '',
+  `group_desc` text NOT NULL,
+  `group_desc_bitfield` varchar(255) NOT NULL DEFAULT '',
+  `group_desc_options` int(11) unsigned NOT NULL DEFAULT 7,
+  `group_desc_uid` varchar(8) NOT NULL DEFAULT '',
+  `group_display` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `group_avatar` varchar(255) NOT NULL DEFAULT '',
+  `group_avatar_type` varchar(255) NOT NULL DEFAULT '',
+  `group_avatar_width` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `group_avatar_height` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `group_rank` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `group_colour` varchar(6) NOT NULL DEFAULT '',
+  `group_sig_chars` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `group_receive_pm` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `group_message_limit` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `group_legend` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `group_max_recipients` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`group_id`),
+  KEY `group_legend_name` (`group_legend`,`group_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_groups: ~7 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_groups` DISABLE KEYS */;
@@ -1228,6 +1555,19 @@ INSERT INTO `phpbb_groups` (`group_id`, `group_type`, `group_founder_manage`, `g
 	(6, 3, 0, 0, 'BOTS', '', '', 7, '', 0, '', '', 0, 0, 0, '9E8DA7', 0, 0, 0, 0, 5),
 	(7, 3, 0, 0, 'NEWLY_REGISTERED', '', '', 7, '', 0, '', '', 0, 0, 0, '', 0, 0, 0, 0, 5);
 /*!40000 ALTER TABLE `phpbb_groups` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_icons
+CREATE TABLE IF NOT EXISTS `phpbb_icons` (
+  `icons_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `icons_url` varchar(255) NOT NULL DEFAULT '',
+  `icons_width` tinyint(4) NOT NULL DEFAULT 0,
+  `icons_height` tinyint(4) NOT NULL DEFAULT 0,
+  `icons_alt` varchar(255) NOT NULL DEFAULT '',
+  `icons_order` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `display_on_posting` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`icons_id`),
+  KEY `display_on_posting` (`display_on_posting`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_icons: ~10 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_icons` DISABLE KEYS */;
@@ -1244,11 +1584,45 @@ INSERT INTO `phpbb_icons` (`icons_id`, `icons_url`, `icons_width`, `icons_height
 	(10, 'smile/alert.gif', 16, 16, '', 7, 1);
 /*!40000 ALTER TABLE `phpbb_icons` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_lang
+CREATE TABLE IF NOT EXISTS `phpbb_lang` (
+  `lang_id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `lang_iso` varchar(30) NOT NULL DEFAULT '',
+  `lang_dir` varchar(30) NOT NULL DEFAULT '',
+  `lang_english_name` varchar(100) NOT NULL DEFAULT '',
+  `lang_local_name` varchar(255) NOT NULL DEFAULT '',
+  `lang_author` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`lang_id`),
+  KEY `lang_iso` (`lang_iso`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_lang: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_lang` DISABLE KEYS */;
 INSERT INTO `phpbb_lang` (`lang_id`, `lang_iso`, `lang_dir`, `lang_english_name`, `lang_local_name`, `lang_author`) VALUES
 	(1, 'en', 'en', 'British English', 'British English', 'phpBB Limited');
 /*!40000 ALTER TABLE `phpbb_lang` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_log
+CREATE TABLE IF NOT EXISTS `phpbb_log` (
+  `log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `log_type` tinyint(4) NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `reportee_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `log_ip` varchar(40) NOT NULL DEFAULT '',
+  `log_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `log_operation` text NOT NULL,
+  `log_data` mediumtext NOT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `log_type` (`log_type`),
+  KEY `forum_id` (`forum_id`),
+  KEY `topic_id` (`topic_id`),
+  KEY `reportee_id` (`reportee_id`),
+  KEY `user_id` (`user_id`),
+  KEY `log_time` (`log_time`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_log: ~40 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_log` DISABLE KEYS */;
@@ -1296,9 +1670,36 @@ INSERT INTO `phpbb_log` (`log_id`, `log_type`, `user_id`, `forum_id`, `topic_id`
 	(41, 0, 2, 0, 0, 0, 0, '127.0.0.1', 1674727788, 'LOG_FORUM_COPIED_PERMISSIONS', 'a:2:{i:0;s:9:"Categorie";i:1;s:6:"Series";}');
 /*!40000 ALTER TABLE `phpbb_log` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_login_attempts
+CREATE TABLE IF NOT EXISTS `phpbb_login_attempts` (
+  `attempt_ip` varchar(40) NOT NULL DEFAULT '',
+  `attempt_browser` varchar(150) NOT NULL DEFAULT '',
+  `attempt_forwarded_for` varchar(255) NOT NULL DEFAULT '',
+  `attempt_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `username` varchar(255) NOT NULL DEFAULT '0',
+  `username_clean` varchar(255) NOT NULL DEFAULT '0',
+  KEY `att_ip` (`attempt_ip`,`attempt_time`),
+  KEY `att_for` (`attempt_forwarded_for`,`attempt_time`),
+  KEY `att_time` (`attempt_time`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_login_attempts: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_login_attempts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_login_attempts` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_migrations
+CREATE TABLE IF NOT EXISTS `phpbb_migrations` (
+  `migration_name` varchar(255) NOT NULL DEFAULT '',
+  `migration_depends_on` text NOT NULL,
+  `migration_schema_done` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `migration_data_done` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `migration_data_state` text NOT NULL,
+  `migration_start_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `migration_end_time` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`migration_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_migrations: ~303 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_migrations` DISABLE KEYS */;
@@ -1608,9 +2009,40 @@ INSERT INTO `phpbb_migrations` (`migration_name`, `migration_depends_on`, `migra
 	('\\phpbb\\viglink\\migrations\\viglink_data_v2', 'a:1:{i:0;s:38:"\\phpbb\\viglink\\migrations\\viglink_data";}', 1, 1, '', 1671562894, 1671562894);
 /*!40000 ALTER TABLE `phpbb_migrations` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_moderator_cache
+CREATE TABLE IF NOT EXISTS `phpbb_moderator_cache` (
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `group_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `group_name` varchar(255) NOT NULL DEFAULT '',
+  `display_on_index` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  KEY `disp_idx` (`display_on_index`),
+  KEY `forum_id` (`forum_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_moderator_cache: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_moderator_cache` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_moderator_cache` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_modules
+CREATE TABLE IF NOT EXISTS `phpbb_modules` (
+  `module_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `module_enabled` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `module_display` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `module_basename` varchar(255) NOT NULL DEFAULT '',
+  `module_class` varchar(10) NOT NULL DEFAULT '',
+  `parent_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `left_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `right_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `module_langname` varchar(255) NOT NULL DEFAULT '',
+  `module_mode` varchar(255) NOT NULL DEFAULT '',
+  `module_auth` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`module_id`),
+  KEY `left_right_id` (`left_id`,`right_id`),
+  KEY `module_enabled` (`module_enabled`),
+  KEY `class_left_id` (`module_class`,`left_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_modules: ~207 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_modules` DISABLE KEYS */;
@@ -1824,13 +2256,46 @@ INSERT INTO `phpbb_modules` (`module_id`, `module_enabled`, `module_display`, `m
 	(207, 1, 1, '\\phpbb\\viglink\\acp\\viglink_module', 'acp', 3, 43, 44, 'ACP_VIGLINK_SETTINGS', 'settings', 'ext_phpbb/viglink && acl_a_board');
 /*!40000 ALTER TABLE `phpbb_modules` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_notifications
+CREATE TABLE IF NOT EXISTS `phpbb_notifications` (
+  `notification_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `notification_type_id` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `item_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `item_parent_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `notification_read` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `notification_time` int(11) unsigned NOT NULL DEFAULT 1,
+  `notification_data` text NOT NULL,
+  PRIMARY KEY (`notification_id`),
+  KEY `item_ident` (`notification_type_id`,`item_id`),
+  KEY `user` (`user_id`,`notification_read`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_notifications: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_notifications` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_notifications` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_notification_emails
+CREATE TABLE IF NOT EXISTS `phpbb_notification_emails` (
+  `notification_type_id` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `item_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `item_parent_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`notification_type_id`,`item_id`,`item_parent_id`,`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_notification_emails: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_notification_emails` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_notification_emails` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_notification_types
+CREATE TABLE IF NOT EXISTS `phpbb_notification_types` (
+  `notification_type_id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `notification_type_name` varchar(255) NOT NULL DEFAULT '',
+  `notification_type_enabled` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`notification_type_id`),
+  UNIQUE KEY `type` (`notification_type_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_notification_types: ~9 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_notification_types` DISABLE KEYS */;
@@ -1846,25 +2311,115 @@ INSERT INTO `phpbb_notification_types` (`notification_type_id`, `notification_ty
 	(9, 'notification.type.report_post', 1);
 /*!40000 ALTER TABLE `phpbb_notification_types` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_oauth_accounts
+CREATE TABLE IF NOT EXISTS `phpbb_oauth_accounts` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `provider` varchar(255) NOT NULL DEFAULT '',
+  `oauth_provider_id` text NOT NULL,
+  PRIMARY KEY (`user_id`,`provider`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_oauth_accounts: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_oauth_accounts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_oauth_accounts` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_oauth_states
+CREATE TABLE IF NOT EXISTS `phpbb_oauth_states` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `session_id` char(32) NOT NULL DEFAULT '',
+  `provider` varchar(255) NOT NULL DEFAULT '',
+  `oauth_state` varchar(255) NOT NULL DEFAULT '',
+  KEY `user_id` (`user_id`),
+  KEY `provider` (`provider`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_oauth_states: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_oauth_states` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_oauth_states` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_oauth_tokens
+CREATE TABLE IF NOT EXISTS `phpbb_oauth_tokens` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `session_id` char(32) NOT NULL DEFAULT '',
+  `provider` varchar(255) NOT NULL DEFAULT '',
+  `oauth_token` mediumtext NOT NULL,
+  KEY `user_id` (`user_id`),
+  KEY `provider` (`provider`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_oauth_tokens: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_oauth_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_oauth_tokens` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_poll_options
+CREATE TABLE IF NOT EXISTS `phpbb_poll_options` (
+  `poll_option_id` tinyint(4) NOT NULL DEFAULT 0,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `poll_option_text` text NOT NULL,
+  `poll_option_total` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  KEY `poll_opt_id` (`poll_option_id`),
+  KEY `topic_id` (`topic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_poll_options: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_poll_options` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_poll_options` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_poll_votes
+CREATE TABLE IF NOT EXISTS `phpbb_poll_votes` (
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `poll_option_id` tinyint(4) NOT NULL DEFAULT 0,
+  `vote_user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `vote_user_ip` varchar(40) NOT NULL DEFAULT '',
+  KEY `topic_id` (`topic_id`),
+  KEY `vote_user_id` (`vote_user_id`),
+  KEY `vote_user_ip` (`vote_user_ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_poll_votes: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_poll_votes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_poll_votes` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_posts
+CREATE TABLE IF NOT EXISTS `phpbb_posts` (
+  `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `poster_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `icon_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `poster_ip` varchar(40) NOT NULL DEFAULT '',
+  `post_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `post_reported` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `enable_bbcode` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_smilies` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_magic_url` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_sig` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `post_username` varchar(255) NOT NULL DEFAULT '',
+  `post_subject` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
+  `post_text` mediumtext NOT NULL,
+  `post_checksum` varchar(32) NOT NULL DEFAULT '',
+  `post_attachment` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `bbcode_bitfield` varchar(255) NOT NULL DEFAULT '',
+  `bbcode_uid` varchar(8) NOT NULL DEFAULT '',
+  `post_postcount` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `post_edit_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `post_edit_reason` varchar(255) NOT NULL DEFAULT '',
+  `post_edit_user` int(10) unsigned NOT NULL DEFAULT 0,
+  `post_edit_count` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `post_edit_locked` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `post_visibility` tinyint(3) NOT NULL DEFAULT 0,
+  `post_delete_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `post_delete_reason` varchar(255) NOT NULL DEFAULT '',
+  `post_delete_user` int(10) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`post_id`),
+  KEY `forum_id` (`forum_id`),
+  KEY `topic_id` (`topic_id`),
+  KEY `poster_ip` (`poster_ip`),
+  KEY `poster_id` (`poster_id`),
+  KEY `tid_post_time` (`topic_id`,`post_time`),
+  KEY `post_username` (`post_username`),
+  KEY `post_visibility` (`post_visibility`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_posts: ~43 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_posts` DISABLE KEYS */;
@@ -1915,21 +2470,125 @@ INSERT INTO `phpbb_posts` (`post_id`, `topic_id`, `forum_id`, `poster_id`, `icon
 	(46, 2, 5, 2, 0, '', 0, 0, 1, 1, 0, 1, 'admin', 'channela_bot', 'Take a trip down memory lane… #nocopyrightsounds #ncs #copyrightfree | https://t.co/bsJ7Gta7TL https://t.co/dOtOaUGEIk', '', 0, '', '', 1, 0, '', 0, 0, 0, 1, 0, '', 0);
 /*!40000 ALTER TABLE `phpbb_posts` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_privmsgs
+CREATE TABLE IF NOT EXISTS `phpbb_privmsgs` (
+  `msg_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `root_level` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `author_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `icon_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `author_ip` varchar(40) NOT NULL DEFAULT '',
+  `message_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `enable_bbcode` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_smilies` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_magic_url` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `enable_sig` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `message_subject` varchar(255) NOT NULL DEFAULT '',
+  `message_text` mediumtext NOT NULL,
+  `message_edit_reason` varchar(255) NOT NULL DEFAULT '',
+  `message_edit_user` int(10) unsigned NOT NULL DEFAULT 0,
+  `message_attachment` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `bbcode_bitfield` varchar(255) NOT NULL DEFAULT '',
+  `bbcode_uid` varchar(8) NOT NULL DEFAULT '',
+  `message_edit_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `message_edit_count` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `to_address` text NOT NULL,
+  `bcc_address` text NOT NULL,
+  `message_reported` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`msg_id`),
+  KEY `author_ip` (`author_ip`),
+  KEY `message_time` (`message_time`),
+  KEY `author_id` (`author_id`),
+  KEY `root_level` (`root_level`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_privmsgs: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_privmsgs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_privmsgs` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_privmsgs_folder
+CREATE TABLE IF NOT EXISTS `phpbb_privmsgs_folder` (
+  `folder_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `folder_name` varchar(255) NOT NULL DEFAULT '',
+  `pm_count` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`folder_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_privmsgs_folder: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_privmsgs_folder` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_privmsgs_folder` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_privmsgs_rules
+CREATE TABLE IF NOT EXISTS `phpbb_privmsgs_rules` (
+  `rule_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `rule_check` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `rule_connection` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `rule_string` varchar(255) NOT NULL DEFAULT '',
+  `rule_user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `rule_group_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `rule_action` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `rule_folder_id` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`rule_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_privmsgs_rules: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_privmsgs_rules` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_privmsgs_rules` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_privmsgs_to
+CREATE TABLE IF NOT EXISTS `phpbb_privmsgs_to` (
+  `msg_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `author_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `pm_deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `pm_new` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `pm_unread` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `pm_replied` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `pm_marked` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `pm_forwarded` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `folder_id` int(11) NOT NULL DEFAULT 0,
+  KEY `msg_id` (`msg_id`),
+  KEY `author_id` (`author_id`),
+  KEY `usr_flder_id` (`user_id`,`folder_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_privmsgs_to: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_privmsgs_to` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_privmsgs_to` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_profile_fields
+CREATE TABLE IF NOT EXISTS `phpbb_profile_fields` (
+  `field_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `field_name` varchar(255) NOT NULL DEFAULT '',
+  `field_type` varchar(100) NOT NULL DEFAULT '',
+  `field_ident` varchar(20) NOT NULL DEFAULT '',
+  `field_length` varchar(20) NOT NULL DEFAULT '',
+  `field_minlen` varchar(255) NOT NULL DEFAULT '',
+  `field_maxlen` varchar(255) NOT NULL DEFAULT '',
+  `field_novalue` varchar(255) NOT NULL DEFAULT '',
+  `field_default_value` varchar(255) NOT NULL DEFAULT '',
+  `field_validation` varchar(64) NOT NULL DEFAULT '',
+  `field_required` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_show_on_reg` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_hide` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_no_view` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_active` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_order` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `field_show_profile` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_show_on_vt` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_show_novalue` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_show_on_pm` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_show_on_ml` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_is_contact` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `field_contact_desc` varchar(255) NOT NULL DEFAULT '',
+  `field_contact_url` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`field_id`),
+  KEY `fld_type` (`field_type`),
+  KEY `fld_ordr` (`field_order`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_profile_fields: ~10 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_profile_fields` DISABLE KEYS */;
@@ -1946,13 +2605,49 @@ INSERT INTO `phpbb_profile_fields` (`field_id`, `field_name`, `field_type`, `fie
 	(10, 'phpbb_youtube', 'profilefields.type.string', 'phpbb_youtube', '20', '3', '60', '', '', '[a-zA-Z][\\w\\.,\\-_]+', 0, 0, 0, 0, 1, 12, 1, 1, 0, 1, 1, 1, 'VIEW_YOUTUBE_CHANNEL', 'http://youtube.com/user/%s');
 /*!40000 ALTER TABLE `phpbb_profile_fields` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_profile_fields_data
+CREATE TABLE IF NOT EXISTS `phpbb_profile_fields_data` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `pf_phpbb_interests` mediumtext NOT NULL,
+  `pf_phpbb_occupation` mediumtext NOT NULL,
+  `pf_phpbb_location` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_skype` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_facebook` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_icq` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_twitter` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_website` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_youtube` varchar(255) NOT NULL DEFAULT '',
+  `pf_phpbb_yahoo` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_profile_fields_data: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_profile_fields_data` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_profile_fields_data` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_profile_fields_lang
+CREATE TABLE IF NOT EXISTS `phpbb_profile_fields_lang` (
+  `field_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `lang_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `option_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `field_type` varchar(100) NOT NULL DEFAULT '',
+  `lang_value` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`field_id`,`lang_id`,`option_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_profile_fields_lang: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_profile_fields_lang` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_profile_fields_lang` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_profile_lang
+CREATE TABLE IF NOT EXISTS `phpbb_profile_lang` (
+  `field_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `lang_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `lang_name` varchar(255) NOT NULL DEFAULT '',
+  `lang_explain` text NOT NULL,
+  `lang_default_value` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`field_id`,`lang_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_profile_lang: ~10 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_profile_lang` DISABLE KEYS */;
@@ -1969,15 +2664,56 @@ INSERT INTO `phpbb_profile_lang` (`field_id`, `lang_id`, `lang_name`, `lang_expl
 	(10, 1, 'YOUTUBE', '', '');
 /*!40000 ALTER TABLE `phpbb_profile_lang` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_ranks
+CREATE TABLE IF NOT EXISTS `phpbb_ranks` (
+  `rank_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `rank_title` varchar(255) NOT NULL DEFAULT '',
+  `rank_min` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `rank_special` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `rank_image` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`rank_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_ranks: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_ranks` DISABLE KEYS */;
 INSERT INTO `phpbb_ranks` (`rank_id`, `rank_title`, `rank_min`, `rank_special`, `rank_image`) VALUES
 	(1, 'Site Admin', 0, 1, '');
 /*!40000 ALTER TABLE `phpbb_ranks` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_reports
+CREATE TABLE IF NOT EXISTS `phpbb_reports` (
+  `report_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `reason_id` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_notify` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `report_closed` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `report_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `report_text` mediumtext NOT NULL,
+  `pm_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `reported_post_enable_bbcode` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `reported_post_enable_smilies` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `reported_post_enable_magic_url` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `reported_post_text` mediumtext NOT NULL,
+  `reported_post_uid` varchar(8) NOT NULL DEFAULT '',
+  `reported_post_bitfield` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`report_id`),
+  KEY `post_id` (`post_id`),
+  KEY `pm_id` (`pm_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_reports: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_reports` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_reports` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_reports_reasons
+CREATE TABLE IF NOT EXISTS `phpbb_reports_reasons` (
+  `reason_id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
+  `reason_title` varchar(255) NOT NULL DEFAULT '',
+  `reason_description` mediumtext NOT NULL,
+  `reason_order` smallint(4) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`reason_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_reports_reasons: ~4 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_reports_reasons` DISABLE KEYS */;
@@ -1988,9 +2724,29 @@ INSERT INTO `phpbb_reports_reasons` (`reason_id`, `reason_title`, `reason_descri
 	(4, 'other', 'The reported post does not fit into any other category, please use the further information field.', 4);
 /*!40000 ALTER TABLE `phpbb_reports_reasons` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_search_results
+CREATE TABLE IF NOT EXISTS `phpbb_search_results` (
+  `search_key` varchar(32) NOT NULL DEFAULT '',
+  `search_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `search_keywords` mediumtext NOT NULL,
+  `search_authors` mediumtext NOT NULL,
+  PRIMARY KEY (`search_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_search_results: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_search_results` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_search_results` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_search_wordlist
+CREATE TABLE IF NOT EXISTS `phpbb_search_wordlist` (
+  `word_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `word_text` varchar(255) NOT NULL DEFAULT '',
+  `word_common` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `word_count` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`word_id`),
+  UNIQUE KEY `wrd_txt` (`word_text`),
+  KEY `wrd_cnt` (`word_count`)
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_search_wordlist: ~68 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_search_wordlist` DISABLE KEYS */;
@@ -2068,6 +2824,16 @@ INSERT INTO `phpbb_search_wordlist` (`word_id`, `word_text`, `word_common`, `wor
 	(71, 'episode', 0, 1),
 	(72, 'geniale', 0, 1);
 /*!40000 ALTER TABLE `phpbb_search_wordlist` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_search_wordmatch
+CREATE TABLE IF NOT EXISTS `phpbb_search_wordmatch` (
+  `post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `word_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `title_match` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  UNIQUE KEY `un_mtch` (`word_id`,`post_id`,`title_match`),
+  KEY `word_id` (`word_id`),
+  KEY `post_id` (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_search_wordmatch: ~70 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_search_wordmatch` DISABLE KEYS */;
@@ -2149,11 +2915,42 @@ INSERT INTO `phpbb_search_wordmatch` (`post_id`, `word_id`, `title_match`) VALUE
 	(6, 72, 0);
 /*!40000 ALTER TABLE `phpbb_search_wordmatch` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_sessions
+CREATE TABLE IF NOT EXISTS `phpbb_sessions` (
+  `session_id` char(32) NOT NULL DEFAULT '',
+  `session_user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `session_last_visit` int(11) unsigned NOT NULL DEFAULT 0,
+  `session_start` int(11) unsigned NOT NULL DEFAULT 0,
+  `session_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `session_ip` varchar(40) NOT NULL DEFAULT '',
+  `session_browser` varchar(150) NOT NULL DEFAULT '',
+  `session_forwarded_for` varchar(255) NOT NULL DEFAULT '',
+  `session_page` varchar(255) NOT NULL DEFAULT '',
+  `session_viewonline` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `session_autologin` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `session_admin` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `session_forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`session_id`),
+  KEY `session_time` (`session_time`),
+  KEY `session_user_id` (`session_user_id`),
+  KEY `session_fid` (`session_forum_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_sessions: ~1 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_sessions` DISABLE KEYS */;
 INSERT INTO `phpbb_sessions` (`session_id`, `session_user_id`, `session_last_visit`, `session_start`, `session_time`, `session_ip`, `session_browser`, `session_forwarded_for`, `session_page`, `session_viewonline`, `session_autologin`, `session_admin`, `session_forum_id`) VALUES
 	('8f2500a01a33437c50532c1862e596e4', 2, 1673343490, 1674727521, 1674727948, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0', '', 'viewtopic.php?t=2', 1, 1, 1, 5);
 /*!40000 ALTER TABLE `phpbb_sessions` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_sessions_keys
+CREATE TABLE IF NOT EXISTS `phpbb_sessions_keys` (
+  `key_id` char(32) NOT NULL DEFAULT '',
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `last_ip` varchar(40) NOT NULL DEFAULT '',
+  `last_login` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`key_id`,`user_id`),
+  KEY `last_login` (`last_login`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_sessions_keys: ~1 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_sessions_keys` DISABLE KEYS */;
@@ -2161,9 +2958,32 @@ INSERT INTO `phpbb_sessions_keys` (`key_id`, `user_id`, `last_ip`, `last_login`)
 	('f256ae84caa328901659d11bb5357b05', 2, '127.0.0.1', 1674727522);
 /*!40000 ALTER TABLE `phpbb_sessions_keys` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_sitelist
+CREATE TABLE IF NOT EXISTS `phpbb_sitelist` (
+  `site_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `site_ip` varchar(40) NOT NULL DEFAULT '',
+  `site_hostname` varchar(255) NOT NULL DEFAULT '',
+  `ip_exclude` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`site_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_sitelist: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_sitelist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_sitelist` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_smilies
+CREATE TABLE IF NOT EXISTS `phpbb_smilies` (
+  `smiley_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) NOT NULL DEFAULT '',
+  `emotion` varchar(255) NOT NULL DEFAULT '',
+  `smiley_url` varchar(50) NOT NULL DEFAULT '',
+  `smiley_width` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `smiley_height` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `smiley_order` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `display_on_posting` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`smiley_id`),
+  KEY `display_on_post` (`display_on_posting`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_smilies: ~42 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_smilies` DISABLE KEYS */;
@@ -2212,11 +3032,35 @@ INSERT INTO `phpbb_smilies` (`smiley_id`, `code`, `emotion`, `smiley_url`, `smil
 	(42, ':ugeek:', 'Uber Geek', 'icon_e_ugeek.gif', 17, 18, 42, 1);
 /*!40000 ALTER TABLE `phpbb_smilies` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_styles
+CREATE TABLE IF NOT EXISTS `phpbb_styles` (
+  `style_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `style_name` varchar(255) NOT NULL DEFAULT '',
+  `style_copyright` varchar(255) NOT NULL DEFAULT '',
+  `style_active` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `style_path` varchar(100) NOT NULL DEFAULT '',
+  `bbcode_bitfield` varchar(255) NOT NULL DEFAULT 'kNg=',
+  `style_parent_id` int(4) unsigned NOT NULL DEFAULT 0,
+  `style_parent_tree` text NOT NULL,
+  PRIMARY KEY (`style_id`),
+  UNIQUE KEY `style_name` (`style_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_styles: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_styles` DISABLE KEYS */;
 INSERT INTO `phpbb_styles` (`style_id`, `style_name`, `style_copyright`, `style_active`, `style_path`, `bbcode_bitfield`, `style_parent_id`, `style_parent_tree`) VALUES
 	(1, 'prosilver', '&copy; phpBB Limited', 1, 'prosilver', '//g=', 0, '');
 /*!40000 ALTER TABLE `phpbb_styles` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_teampage
+CREATE TABLE IF NOT EXISTS `phpbb_teampage` (
+  `teampage_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `teampage_name` varchar(255) NOT NULL DEFAULT '',
+  `teampage_position` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `teampage_parent` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`teampage_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_teampage: ~2 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_teampage` DISABLE KEYS */;
@@ -2225,11 +3069,69 @@ INSERT INTO `phpbb_teampage` (`teampage_id`, `group_id`, `teampage_name`, `teamp
 	(2, 4, '', 2, 0);
 /*!40000 ALTER TABLE `phpbb_teampage` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_topics
+CREATE TABLE IF NOT EXISTS `phpbb_topics` (
+  `topic_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `icon_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `topic_attachment` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `topic_reported` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `topic_title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
+  `topic_poster` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `topic_time_limit` int(11) unsigned NOT NULL DEFAULT 0,
+  `topic_views` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `topic_status` tinyint(3) NOT NULL DEFAULT 0,
+  `topic_type` tinyint(3) NOT NULL DEFAULT 0,
+  `topic_first_post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_first_poster_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '',
+  `topic_first_poster_colour` varchar(6) NOT NULL DEFAULT '',
+  `topic_last_post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_last_poster_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_last_poster_name` varchar(255) NOT NULL DEFAULT '',
+  `topic_last_poster_colour` varchar(6) NOT NULL DEFAULT '',
+  `topic_last_post_subject` varchar(255) NOT NULL DEFAULT '',
+  `topic_last_post_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `topic_last_view_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `topic_moved_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_bumped` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `topic_bumper` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `poll_title` varchar(255) NOT NULL DEFAULT '',
+  `poll_start` int(11) unsigned NOT NULL DEFAULT 0,
+  `poll_length` int(11) unsigned NOT NULL DEFAULT 0,
+  `poll_max_options` tinyint(4) NOT NULL DEFAULT 1,
+  `poll_last_vote` int(11) unsigned NOT NULL DEFAULT 0,
+  `poll_vote_change` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `topic_visibility` tinyint(3) NOT NULL DEFAULT 0,
+  `topic_delete_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `topic_delete_reason` varchar(255) NOT NULL DEFAULT '',
+  `topic_delete_user` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_posts_approved` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `topic_posts_unapproved` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `topic_posts_softdeleted` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`topic_id`),
+  KEY `forum_id` (`forum_id`),
+  KEY `forum_id_type` (`forum_id`,`topic_type`),
+  KEY `last_post_time` (`topic_last_post_time`),
+  KEY `fid_time_moved` (`forum_id`,`topic_last_post_time`,`topic_moved_id`),
+  KEY `topic_visibility` (`topic_visibility`),
+  KEY `forum_vis_last` (`forum_id`,`topic_visibility`,`topic_last_post_id`),
+  KEY `latest_topics` (`forum_id`,`topic_last_post_time`,`topic_last_post_id`,`topic_moved_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_topics: ~1 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_topics` DISABLE KEYS */;
 INSERT INTO `phpbb_topics` (`topic_id`, `forum_id`, `icon_id`, `topic_attachment`, `topic_reported`, `topic_title`, `topic_poster`, `topic_time`, `topic_time_limit`, `topic_views`, `topic_status`, `topic_type`, `topic_first_post_id`, `topic_first_poster_name`, `topic_first_poster_colour`, `topic_last_post_id`, `topic_last_poster_id`, `topic_last_poster_name`, `topic_last_poster_colour`, `topic_last_post_subject`, `topic_last_post_time`, `topic_last_view_time`, `topic_moved_id`, `topic_bumped`, `topic_bumper`, `poll_title`, `poll_start`, `poll_length`, `poll_max_options`, `poll_last_vote`, `poll_vote_change`, `topic_visibility`, `topic_delete_time`, `topic_delete_reason`, `topic_delete_user`, `topic_posts_approved`, `topic_posts_unapproved`, `topic_posts_softdeleted`) VALUES
 	(2, 5, 4, 0, 0, 'testing', 2, 1672160044, 0, 15, 0, 0, 2, 'admin', 'AA0000', 6, 2, 'admin', 'AA0000', 'Re: testing', 1672589340, 1674727952, 0, 0, 0, '', 0, 0, 1, 0, 0, 1, 0, '', 0, 2, 0, 0);
 /*!40000 ALTER TABLE `phpbb_topics` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_topics_posted
+CREATE TABLE IF NOT EXISTS `phpbb_topics_posted` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_posted` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`,`topic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_topics_posted: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_topics_posted` DISABLE KEYS */;
@@ -2238,15 +3140,112 @@ INSERT INTO `phpbb_topics_posted` (`user_id`, `topic_id`, `topic_posted`) VALUES
 	(2, 2, 1);
 /*!40000 ALTER TABLE `phpbb_topics_posted` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_topics_track
+CREATE TABLE IF NOT EXISTS `phpbb_topics_track` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `mark_time` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`,`topic_id`),
+  KEY `forum_id` (`forum_id`),
+  KEY `topic_id` (`topic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_topics_track: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_topics_track` DISABLE KEYS */;
 INSERT INTO `phpbb_topics_track` (`user_id`, `topic_id`, `forum_id`, `mark_time`) VALUES
 	(2, 2, 5, 1672589340);
 /*!40000 ALTER TABLE `phpbb_topics_track` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_topics_watch
+CREATE TABLE IF NOT EXISTS `phpbb_topics_watch` (
+  `topic_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `notify_status` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  KEY `topic_id` (`topic_id`),
+  KEY `user_id` (`user_id`),
+  KEY `notify_stat` (`notify_status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_topics_watch: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_topics_watch` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_topics_watch` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_users
+CREATE TABLE IF NOT EXISTS `phpbb_users` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_type` tinyint(2) NOT NULL DEFAULT 0,
+  `group_id` mediumint(8) unsigned NOT NULL DEFAULT 3,
+  `user_permissions` mediumtext NOT NULL,
+  `user_perm_from` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_ip` varchar(40) NOT NULL DEFAULT '',
+  `user_regdate` int(11) unsigned NOT NULL DEFAULT 0,
+  `username` varchar(255) NOT NULL DEFAULT '',
+  `username_clean` varchar(255) NOT NULL DEFAULT '',
+  `user_password` varchar(255) NOT NULL DEFAULT '',
+  `user_passchg` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_email` varchar(100) NOT NULL DEFAULT '',
+  `user_birthday` varchar(10) NOT NULL DEFAULT '',
+  `user_lastvisit` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_lastmark` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_lastpost_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_lastpage` varchar(200) NOT NULL DEFAULT '',
+  `user_last_confirm_key` varchar(10) NOT NULL DEFAULT '',
+  `user_last_search` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_warnings` tinyint(4) NOT NULL DEFAULT 0,
+  `user_last_warning` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_login_attempts` tinyint(4) NOT NULL DEFAULT 0,
+  `user_inactive_reason` tinyint(2) NOT NULL DEFAULT 0,
+  `user_inactive_time` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_posts` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_lang` varchar(30) NOT NULL DEFAULT '',
+  `user_timezone` varchar(100) NOT NULL DEFAULT '',
+  `user_dateformat` varchar(64) NOT NULL DEFAULT 'd M Y H:i',
+  `user_style` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_rank` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_colour` varchar(6) NOT NULL DEFAULT '',
+  `user_new_privmsg` int(4) NOT NULL DEFAULT 0,
+  `user_unread_privmsg` int(4) NOT NULL DEFAULT 0,
+  `user_last_privmsg` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_message_rules` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `user_full_folder` int(11) NOT NULL DEFAULT -3,
+  `user_emailtime` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_topic_show_days` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `user_topic_sortby_type` varchar(1) NOT NULL DEFAULT 't',
+  `user_topic_sortby_dir` varchar(1) NOT NULL DEFAULT 'd',
+  `user_post_show_days` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `user_post_sortby_type` varchar(1) NOT NULL DEFAULT 't',
+  `user_post_sortby_dir` varchar(1) NOT NULL DEFAULT 'a',
+  `user_notify` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `user_notify_pm` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `user_notify_type` tinyint(4) NOT NULL DEFAULT 0,
+  `user_allow_pm` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `user_allow_viewonline` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `user_allow_viewemail` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `user_allow_massemail` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `user_options` int(11) unsigned NOT NULL DEFAULT 230271,
+  `user_avatar` varchar(255) NOT NULL DEFAULT '',
+  `user_avatar_type` varchar(255) NOT NULL DEFAULT '',
+  `user_avatar_width` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `user_avatar_height` smallint(4) unsigned NOT NULL DEFAULT 0,
+  `user_sig` mediumtext NOT NULL,
+  `user_sig_bbcode_uid` varchar(8) NOT NULL DEFAULT '',
+  `user_sig_bbcode_bitfield` varchar(255) NOT NULL DEFAULT '',
+  `user_jabber` varchar(255) NOT NULL DEFAULT '',
+  `user_actkey` varchar(32) NOT NULL DEFAULT '',
+  `reset_token` varchar(64) NOT NULL DEFAULT '',
+  `reset_token_expiration` int(11) unsigned NOT NULL DEFAULT 0,
+  `user_newpasswd` varchar(255) NOT NULL DEFAULT '',
+  `user_form_salt` varchar(32) NOT NULL DEFAULT '',
+  `user_new` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `user_reminded` tinyint(4) NOT NULL DEFAULT 0,
+  `user_reminded_time` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `username_clean` (`username_clean`),
+  KEY `user_birthday` (`user_birthday`),
+  KEY `user_type` (`user_type`),
+  KEY `user_email` (`user_email`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_users: ~57 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_users` DISABLE KEYS */;
@@ -2309,6 +3308,17 @@ INSERT INTO `phpbb_users` (`user_id`, `user_type`, `group_id`, `user_permissions
 	(56, 2, 6, '', 0, '', 1671562887, 'Yahoo [Bot]', 'yahoo [bot]', '', 1671562887, '', '', 0, 1671562887, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 'en', 'UTC', 'D M d, Y g:i a', 1, 0, '9E8DA7', 0, 0, 0, 0, -3, 0, 0, 't', 'd', 0, 't', 'a', 0, 1, 0, 0, 1, 1, 0, 230271, '', '', 0, 0, '<t></t>', '', '', '', '', '', 0, '', 'btkg5ql3ofgz64z4', 0, 0, 0),
 	(57, 2, 6, '', 0, '', 1671562887, 'YahooSeeker [Bot]', 'yahooseeker [bot]', '', 1671562887, '', '', 0, 1671562887, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 'en', 'UTC', 'D M d, Y g:i a', 1, 0, '9E8DA7', 0, 0, 0, 0, -3, 0, 0, 't', 'd', 0, 't', 'a', 0, 1, 0, 0, 1, 1, 0, 230271, '', '', 0, 0, '<t></t>', '', '', '', '', '', 0, '', 'pwjqdo59pgxersxn', 0, 0, 0);
 /*!40000 ALTER TABLE `phpbb_users` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_user_group
+CREATE TABLE IF NOT EXISTS `phpbb_user_group` (
+  `group_id` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `group_leader` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `user_pending` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  KEY `group_id` (`group_id`),
+  KEY `user_id` (`user_id`),
+  KEY `group_leader` (`group_leader`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_user_group: ~59 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_user_group` DISABLE KEYS */;
@@ -2373,6 +3383,19 @@ INSERT INTO `phpbb_user_group` (`group_id`, `user_id`, `group_leader`, `user_pen
 	(6, 56, 0, 0),
 	(6, 57, 0, 0);
 /*!40000 ALTER TABLE `phpbb_user_group` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_user_notifications
+CREATE TABLE IF NOT EXISTS `phpbb_user_notifications` (
+  `item_type` varchar(165) NOT NULL DEFAULT '',
+  `item_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `method` varchar(165) NOT NULL DEFAULT '',
+  `notify` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  UNIQUE KEY `itm_usr_mthd` (`item_type`,`item_id`,`user_id`,`method`),
+  KEY `user_id` (`user_id`),
+  KEY `uid_itm_id` (`user_id`,`item_id`),
+  KEY `usr_itm_tpe` (`user_id`,`item_type`,`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_user_notifications: ~116 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_user_notifications` DISABLE KEYS */;
@@ -2495,13 +3518,40 @@ INSERT INTO `phpbb_user_notifications` (`item_type`, `item_id`, `user_id`, `meth
 	('notification.type.topic', 0, 57, 'notification.method.email', 1);
 /*!40000 ALTER TABLE `phpbb_user_notifications` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_warnings
+CREATE TABLE IF NOT EXISTS `phpbb_warnings` (
+  `warning_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `post_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `log_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `warning_time` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`warning_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_warnings: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_warnings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_warnings` ENABLE KEYS */;
 
+-- Dumping structure for table blogdb.phpbb_words
+CREATE TABLE IF NOT EXISTS `phpbb_words` (
+  `word_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `word` varchar(255) NOT NULL DEFAULT '',
+  `replacement` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`word_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
 -- Dumping data for table blogdb.phpbb_words: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_words` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phpbb_words` ENABLE KEYS */;
+
+-- Dumping structure for table blogdb.phpbb_zebra
+CREATE TABLE IF NOT EXISTS `phpbb_zebra` (
+  `user_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `zebra_id` int(10) unsigned NOT NULL DEFAULT 0,
+  `friend` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `foe` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`,`zebra_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 -- Dumping data for table blogdb.phpbb_zebra: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phpbb_zebra` DISABLE KEYS */;

@@ -14,15 +14,8 @@ RUN npm install
 COPY . .
 
 # Build the application
+RUN apk update && apk add bash
 RUN npm run build
-
-# Expose port 3000
-# EXPOSE 3030
 
 # Start the application
 CMD ["npm", "start"]
-
-
-
-
-
